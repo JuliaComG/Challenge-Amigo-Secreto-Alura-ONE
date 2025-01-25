@@ -59,4 +59,5 @@ function addName(name){
 
 function cleanInput(){
     document.getElementById("name").value = "";
+    console.log("addName: "+friendsList);
 }
