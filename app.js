@@ -3,7 +3,7 @@ let friendsList = [];
 document.getElementById("name").addEventListener("keydown", pressEnter);
 
 function pressEnter(event){
-    if (event.key === "Enter") {
+    if (event.key === "Enter"){
         checkInput();
     }
 }
@@ -23,14 +23,6 @@ function checkInput(){
     }
 }
 
-function lengthName(name){
-    if (name.length < 2 || name.length > 33){
-        return true;
-    } else {
-        return false;
-    }
-}
-
 function normalizeInput(name){
     name = name.toLowerCase().trim();
     name = firstLetterOfEachWordCapitalized(name);
@@ -46,18 +38,42 @@ function firstLetterOfEachWordCapitalized(name){
     return nameCapitalized.trim();
 }
 
+function lengthName(name){
+    if (name.length < 2 || name.length > 33){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function checkInputDuplicated(name){
     return friendsList.includes(name);
 }
 
 function addName(name){
     friendsList.push(name);
+    console.log(friendsList);
     cleanInput();
-    
-    console.log("addName: "+friendsList);
+    updateUIList();
 }
 
 function cleanInput(){
     document.getElementById("name").value = "";
-    console.log("addName: "+friendsList);
+}
+
+function updateUIList(){
+    let uiList = document.getElementById("name-list");
+    uiList.innerHTML = "";
+    
+    listAlphabeticalOrder();
+
+    for (let i=0; i < friendsList.length; i++){
+        let li = document.createElement("li");
+        li.textContent = friendsList[i];
+        uiList.appendChild(li);
+    }
+}
+
+function listAlphabeticalOrder(){
+    friendsList.sort();
 }

@@ -24,8 +24,16 @@
                 <button class="button-add" onclick="checkInput()">Adicionar</button>
             </div>
            
-            <ul id="listaAmigos" class="name-list" aria-labelledby="listaAmigos" role="list"></ul>
-            <ul id="resultado" class="result-list" aria-live="polite"></ul>
+            <div class="input-wrapper"></div>
+                <ul id="name-list" class="name-list" aria-labelledby="listaAmigos" role="list">
+                    <il>Nenhum amigo adicionado</il>
+                </ul>
+
+                <ul id="resultado" class="result-list" aria-live="polite">
+
+                </ul>
+            </div>
+
 
             <div class="button-container">
                 <button class="button-draw" onclick="sortearAmigo()" aria-label="Sortear amigo secreto">
