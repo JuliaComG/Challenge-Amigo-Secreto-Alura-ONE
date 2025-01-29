@@ -126,14 +126,61 @@ button {
 }
 
 /* Listas */
-ul {
+/*ul {
     list-style-type: none;
     color: var(--color-text);
     font-family: "Inter", sans-serif;
     font-size: 18px;
     margin: 20px 0;
+}*/
+
+
+/* Listas dos nomes*/
+.name-list {
+    list-style: none;
+    padding: 0;
 }
 
+.name-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: royalblue;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 5px 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    width: 250px;
+}
+
+/* Listas dos nomes botão de excluir*/
+.name-list button {
+    border: none;          
+    background: none;      
+    color: white;          
+    font-size: 12px;      
+    padding: 3px 8px;      
+    cursor: pointer;    
+    font-weight: bold;    
+    display: inline-block; 
+    text-align: center;    
+    box-shadow: none;;
+}
+
+.name-list button:hover {
+    color: red;
+    background-color: #ffdddd; 
+}
+
+.name-list button:focus {
+    outline: none;
+}
+
+/* Listas dos sorteado*/
 .result-list {
     margin-top: 15px;
     color: #05DF05;

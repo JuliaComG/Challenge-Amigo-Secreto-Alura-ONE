@@ -39,7 +39,10 @@ function firstLetterOfEachWordCapitalized(name){
 }
 
 function lengthName(name){
-    if (name.length < 2 || name.length > 33){
+    let shortestName = 2; //Jó
+    let longestName = 32; //Charlingtonglaevionbeecheknavare
+    
+    if (name.length < shortestName || name.length > longestName){
         return true;
     } else {
         return false;
@@ -69,11 +72,23 @@ function updateUIList(){
 
     for (let i=0; i < friendsList.length; i++){
         let li = document.createElement("li");
+        li.classList.add("name-list");
         li.textContent = friendsList[i];
+
+        let buttonRemove = document.createElement("button");
+        buttonRemove.textContent = "X";
+        buttonRemove.onclick = () => removeName(i);
+
+        li.appendChild(buttonRemove);
         uiList.appendChild(li);
     }
 }
 
 function listAlphabeticalOrder(){
     friendsList.sort();
+}
+
+function removeName(i){
+    friendsList.splice(i, 1);
+    updateUIList();
 }
