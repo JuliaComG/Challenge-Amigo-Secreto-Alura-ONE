@@ -33,6 +33,11 @@ function validateName(name) {
         return false;
     }
 
+    if (isInvalidName(name)) {
+        alert("Por favor, digite um nome válido (apenas letras e espaços).");
+        return false;
+    } 
+    
     return true;
 }
 
@@ -55,6 +60,11 @@ function isInvalidLength(name) {
 
 function isNameDuplicated(name) {
     return friendsList.includes(name);
+}
+
+function isInvalidName(name) {
+    const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+    return !regex.test(name);
 }
 
 function addName(name) {
