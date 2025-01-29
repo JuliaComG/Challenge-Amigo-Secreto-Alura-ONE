@@ -2,93 +2,103 @@ let friendsList = [];
 
 document.getElementById("name").addEventListener("keydown", pressEnter);
 
-function pressEnter(event){
-    if (event.key === "Enter"){
+function pressEnter(event) {
+    if (event.key === "Enter") {
         checkInput();
     }
 }
 
-function checkInput(){      
+function checkInput() {
     let name = document.getElementById("name").value;
     name = normalizeInput(name);
 
-    if (name === "" || name === null){
-        alert("Por favor, preencha o campo nome.");
-    }else if (isNaN(name) === false || lengthName(name) === true){
-        alert("Por favor, digite um nome válido.");
-    }else if (checkInputDuplicated(name) === true){
-        alert("Nome já está na lista.");
-    }else{
+    if (validateName(name)) {
         addName(name);
     }
 }
 
-function normalizeInput(name){
-    name = name.toLowerCase().trim();
-    name = firstLetterOfEachWordCapitalized(name);
-    return name;
-}
-
-function firstLetterOfEachWordCapitalized(name){
-    let nameArray = name.split(" ");
-    let nameCapitalized = "";
-    for (let i = 0; i < nameArray.length; i++){
-        nameCapitalized += nameArray[i].charAt(0).toUpperCase() + nameArray[i].slice(1) + " ";
-    }
-    return nameCapitalized.trim();
-}
-
-function lengthName(name){
-    let shortestName = 2; //Jó
-    let longestName = 32; //Charlingtonglaevionbeecheknavare
-    
-    if (name.length < shortestName || name.length > longestName){
-        return true;
-    } else {
+function validateName(name) {
+    if (name === "" || name === null) {
+        alert("Por favor, preencha o campo nome.");
         return false;
     }
+
+    if (isNaN(name) === false || isInvalidLength(name)) {
+        alert("Por favor, digite um nome válido.");
+        return false;
+    }
+
+    if (isNameDuplicated(name)) {
+        alert("Nome já está na lista.");
+        return false;
+    }
+
+    return true;
 }
 
-function checkInputDuplicated(name){
+function normalizeInput(name) {
+    name = name.toLowerCase().trim();
+    return capitalizeFirstLetterOfEachWord(name);
+}
+
+function capitalizeFirstLetterOfEachWord(name) {
+    return name.split(" ")
+               .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+               .join(" ");
+}
+
+function isInvalidLength(name) {
+    const shortestName = 2; // Jó
+    const longestName = 32; // Charlingtonglaevionbeecheknavare
+    return name.length < shortestName || name.length > longestName;
+}
+
+function isNameDuplicated(name) {
     return friendsList.includes(name);
 }
 
-function addName(name){
+function addName(name) {
     friendsList.push(name);
-    console.log(friendsList);
     cleanInput();
     updateUIList();
 }
 
-function cleanInput(){
+function cleanInput() {
     document.getElementById("name").value = "";
 }
 
-function updateUIList(){
+function updateUIList() {
     let uiList = document.getElementById("name-list");
     uiList.innerHTML = "";
     
-    listAlphabeticalOrder();
+    sortListAlphabetically();
 
-    for (let i=0; i < friendsList.length; i++){
-        let li = document.createElement("li");
-        li.classList.add("name-list");
-        li.textContent = friendsList[i];
-
-        let buttonRemove = document.createElement("button");
-        buttonRemove.textContent = "X";
-        buttonRemove.onclick = () => removeName(i);
-
-        li.appendChild(buttonRemove);
+    friendsList.forEach((name, index) => {
+        let li = createListItem(name, index);
         uiList.appendChild(li);
-    }
+    });
 }
 
-function listAlphabeticalOrder(){
+function sortListAlphabetically() {
     friendsList.sort();
 }
 
-function removeName(i){
-    friendsList.splice(i, 1);
+function createListItem(name, index) {
+    let li = document.createElement("li");
+    li.classList.add("name-list");
+    li.textContent = name;
+    createRemoveButton(li, index);
+    return li;
+}
+
+function createRemoveButton(li, index) {
+    let buttonRemove = document.createElement("button");
+    buttonRemove.textContent = "X";
+    buttonRemove.onclick = () => removeName(index);
+    li.appendChild(buttonRemove);
+}
+
+function removeName(index) {
+    friendsList.splice(index, 1);
     updateUIList();
 }
