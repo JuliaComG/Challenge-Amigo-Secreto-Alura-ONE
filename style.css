@@ -4,6 +4,8 @@
     --color-tertiary: #C4C4C4;
     --color-button: #fe652b;
     --color-button-hover: #e55720;
+    --color-button-disabled: #C4C4C4;
+    --color-button-add: #FCBD21;
     --color-text: #444444;
     --color-white: #FFFFFF;
 }
@@ -116,7 +118,7 @@ button {
 }
 
 .button-add {
-    background-color: var(--color-tertiary);
+    background-color: var(--color-button-add);
     color: var(--color-text);
     border-radius: 0 25px 25px 0;
 }
@@ -206,4 +208,9 @@ button {
 
 .button-draw:hover {
     background-color: var(--color-button-hover);
+}
+
+.button-draw:disabled {
+    background-color: var(--color-button-disabled);
+    cursor: not-allowed;
 }

@@ -1,4 +1,6 @@
 let friendsList = [];
+const minimumListSize = 3;
+//const maximumListSize = 10;
 
 document.getElementById("name").addEventListener("keydown", pressEnter);
 
@@ -98,6 +100,7 @@ function createListItem(name, index) {
     li.classList.add("name-list");
     li.textContent = name;
     createRemoveButton(li, index);
+    updateUIDrawFriend();
     return li;
 }
 
@@ -112,3 +115,25 @@ function removeName(index) {
     friendsList.splice(index, 1);
     updateUIList();
 }
+
+function updateUIDrawFriend(){
+    checkSizeFriendList();
+}
+
+function checkSizeFriendList() {
+    if (friendsList.length < minimumListSize) {
+        desableDrawFriendButton()
+        return false;
+    }
+
+    enableDrawFriendButton()
+}
+
+function desableDrawFriendButton() {
+    document.getElementById("button-draw").setAttribute("disabled", true);
+}
+
+function enableDrawFriendButton() {
+    document.getElementById("button-draw").removeAttribute("disabled");
+}
+
