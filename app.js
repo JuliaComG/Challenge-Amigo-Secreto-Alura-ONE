@@ -1,6 +1,8 @@
 let friendsList = [];
 const minimumListSize = 3;
-//const maximumListSize = 10;
+const maximumListSize = 100;
+const buttonAdd = "button-add";
+const buttonDraw = "button-draw";
 
 document.getElementById("name").addEventListener("keydown", pressEnter);
 
@@ -11,6 +13,12 @@ function pressEnter(event) {
 }
 
 function checkInput() {
+    
+    if (isTheListFull()){
+        alert(`O limite de ${maximumListSize} amigos foi atingido.`);
+        return;
+    }
+
     let name = document.getElementById("name").value;
     name = normalizeInput(name);
 
@@ -18,6 +26,11 @@ function checkInput() {
         addName(name);
     }
 }
+
+function isTheListFull(){
+    return friendsList.length >= maximumListSize;
+}
+
 
 function validateName(name) {
     if (name === "" || name === null) {
@@ -73,6 +86,7 @@ function addName(name) {
     friendsList.push(name);
     cleanInput();
     updateUIList();
+    updateUIButtons();
 }
 
 function cleanInput() {
@@ -100,7 +114,6 @@ function createListItem(name, index) {
     li.classList.add("name-list");
     li.textContent = name;
     createRemoveButton(li, index);
-    updateUIDrawFriend();
     return li;
 }
 
@@ -114,26 +127,42 @@ function createRemoveButton(li, index) {
 function removeName(index) {
     friendsList.splice(index, 1);
     updateUIList();
+    updateUIButtons();
 }
 
-function updateUIDrawFriend(){
+function updateUIButtons(){
     checkSizeFriendList();
 }
 
 function checkSizeFriendList() {
-    if (friendsList.length < minimumListSize) {
-        desableDrawFriendButton()
-        return false;
+    
+    if (friendsList.length >= minimumListSize) {
+        console.log("size <3: "+buttonDraw);
+        enableButton(buttonDraw);
+    } else {
+        disableButton(buttonDraw);
     }
 
-    enableDrawFriendButton()
+    if (isTheListFull()) {
+        console.log("size >4: "+buttonAdd);
+        disableButton(buttonAdd);
+    } else {
+        enableButton(buttonAdd);
+    }
 }
 
-function desableDrawFriendButton() {
-    document.getElementById("button-draw").setAttribute("disabled", true);
+function disableButton(buttonId) {
+    console.log("disable: "+buttonId);
+    document.getElementById(buttonId).setAttribute("disabled", true);
+    return;
 }
 
-function enableDrawFriendButton() {
-    document.getElementById("button-draw").removeAttribute("disabled");
+function enableButton(buttonId) {
+    console.log("enable: "+buttonId);
+    document.getElementById(buttonId).removeAttribute("disabled");
+    return;
 }
 
+function drawFriend() {
+
+}

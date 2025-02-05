@@ -20,8 +20,8 @@
         <section class="input-section">
             <h2 class="section-title">Digite o nome dos seus amigos</h2>
             <div class="input-wrapper">
-                <input type="text" id="name" class="input-name" placeholder="Digite um nome">
-                <button class="button-add" onclick="checkInput()">Adicionar</button>
+                <input type="text" id="name" class="input-name" placeholder="Digite um nome" autocomplete="off">
+                <button id="button-add" class="button-add" onclick="checkInput()">Adicionar</button>
             </div>
            
             <div class="input-wrapper"></div>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="button-container">
-                <button id="button-draw" class="button-draw" onclick="sortearAmigo()" aria-label="Sortear amigo secreto" disabled="true">
+                <button id="button-draw" class="button-draw" onclick="drawFriend()" aria-label="Sortear amigo secreto" disabled="true">
                     <img src="assets/play_circle_outline.png" alt="Ícone para sortear">
                     Sortear amigo
                 </button>

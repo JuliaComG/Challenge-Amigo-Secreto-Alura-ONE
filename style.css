@@ -6,6 +6,7 @@
     --color-button-hover: #e55720;
     --color-button-disabled: #C4C4C4;
     --color-button-add: #FCBD21;
+    --color-button-add-hover: #ffde49;
     --color-text: #444444;
     --color-white: #FFFFFF;
 }
@@ -124,7 +125,12 @@ button {
 }
 
 .button-add:hover {
-    background-color: #a1a1a1;
+    background-color: var(--color-button-add-hover);
+}
+
+.button-add:disabled {
+    background-color: var(--color-button-disabled);
+    cursor: not-allowed;
 }
 
 /* Listas */
@@ -156,7 +162,12 @@ button {
     margin: 5px 0;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    width: 250px;
+    /* width: 250px; */
+    width: auto;
+}
+
+.name-list li:hover{
+    background-color: rgb(64, 95, 189);
 }
 
 /* Listas dos nomes botão de excluir*/
