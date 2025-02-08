@@ -27,7 +27,7 @@ function showUIAlertMessage (message, type){
 function checkInput() {
     
     if (isTheListFull()){
-        showUIAlertMessage(`O limite de ${maximumListSize} amigos foi atingido.`, "error");
+        showUIAlertMessage(`O limite de ${maximumListSize} amigos foi atingido.`, "warning");
         return;
     }
 
@@ -45,6 +45,8 @@ function isTheListFull(){
 
 
 function validateName(name) {
+    document.getElementById("name").focus();
+
     if (name === "" || name === null) {
         showUIAlertMessage("Por favor, preencha o campo nome. ", "warning");
         return false;
@@ -56,12 +58,12 @@ function validateName(name) {
     }
 
     if (isNameDuplicated(name)) {
-        showUIAlertMessage(`O nome ${name} já está na lista. `, "error");
+        showUIAlertMessage(`O nome ${name} já está na lista. `, "warning");
         return false;
     }
 
     if (isInvalidName(name)) {
-        showUIAlertMessage("Por favor, digite um nome válido (apenas letras e espaços). ", "warning");
+        showUIAlertMessage("Por favor, digite um nome válido (apenas letras e espaços). ", "error");
         return false;
     } 
     
