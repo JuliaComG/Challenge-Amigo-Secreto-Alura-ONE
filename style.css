@@ -9,6 +9,10 @@
     --color-button-add-hover: #ffde49;
     --color-text: #444444;
     --color-white: #FFFFFF;
+    --color-alert-info: #4B69FD;
+    --color-alert-error: #F23005;
+    --color-alert-sucess: #3D8C27;
+    --color-alert-warning: #F29F05;
 }
 
 /* Estilos gerais */
@@ -133,15 +137,6 @@ button {
     cursor: not-allowed;
 }
 
-/* Listas */
-/*ul {
-    list-style-type: none;
-    color: var(--color-text);
-    font-family: "Inter", sans-serif;
-    font-size: 18px;
-    margin: 20px 0;
-}*/
-
 
 /* Listas dos nomes*/
 .name-list {
@@ -162,7 +157,6 @@ button {
     margin: 5px 0;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    /* width: 250px; */
     width: auto;
 }
 
@@ -181,7 +175,7 @@ button {
     font-weight: bold;    
     display: inline-block; 
     text-align: center;    
-    box-shadow: none;;
+    box-shadow: none;
 }
 
 .name-list button:hover {
@@ -224,4 +218,25 @@ button {
 .button-draw:disabled {
     background-color: var(--color-button-disabled);
     cursor: not-allowed;
+}
+
+/* Toastify - Alerts */
+.toastify.info {
+    background: var(--color-alert-info);
+    color: white;
+}
+
+.toastify.error {
+    background: var(--color-alert-error);
+    color: white;
+}
+
+.toastify.success {
+    background: var(--color-alert-sucess);
+    color: white;
+}
+
+.toastify.warning {
+    background: var(--color-alert-warning);
+    color: white;
 }

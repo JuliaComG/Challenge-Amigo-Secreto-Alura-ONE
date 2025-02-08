@@ -12,10 +12,22 @@ function pressEnter(event) {
     }
 }
 
+function showUIAlertMessage (message, type){
+    Toastify({
+        text: message,
+        duration: 10000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true, 
+        className: `toastify ${type}`,
+    }).showToast();
+}
+
 function checkInput() {
     
     if (isTheListFull()){
-        alert(`O limite de ${maximumListSize} amigos foi atingido.`);
+        showUIAlertMessage(`O limite de ${maximumListSize} amigos foi atingido.`, "error");
         return;
     }
 
@@ -34,22 +46,22 @@ function isTheListFull(){
 
 function validateName(name) {
     if (name === "" || name === null) {
-        alert("Por favor, preencha o campo nome.");
+        showUIAlertMessage("Por favor, preencha o campo nome. ", "warning");
         return false;
     }
 
     if (isNaN(name) === false || isInvalidLength(name)) {
-        alert("Por favor, digite um nome válido.");
+        showUIAlertMessage("Por favor, digite um nome válido. ", "error");
         return false;
     }
 
     if (isNameDuplicated(name)) {
-        alert("Nome já está na lista.");
+        showUIAlertMessage(`O nome ${name} já está na lista. `, "error");
         return false;
     }
 
     if (isInvalidName(name)) {
-        alert("Por favor, digite um nome válido (apenas letras e espaços).");
+        showUIAlertMessage("Por favor, digite um nome válido (apenas letras e espaços). ", "warning");
         return false;
     } 
     
@@ -144,7 +156,6 @@ function checkSizeFriendList() {
     }
 
     if (isTheListFull()) {
-        console.log("size >4: "+buttonAdd);
         disableButton(buttonAdd);
     } else {
         enableButton(buttonAdd);
@@ -152,17 +163,22 @@ function checkSizeFriendList() {
 }
 
 function disableButton(buttonId) {
-    console.log("disable: "+buttonId);
     document.getElementById(buttonId).setAttribute("disabled", true);
     return;
 }
 
 function enableButton(buttonId) {
-    console.log("enable: "+buttonId);
     document.getElementById(buttonId).removeAttribute("disabled");
     return;
 }
 
 function drawFriend() {
+    // avisar que não poderá mais sortear
+    // 
+    // desabilitar botão de sortear
+    
+    // Regra de negócio
+    // Embaralhar nome
+    // Formar os pares (todos devem ter um par, ninguém pode tirar a si mesmo,  ninguém pode ter o mesmo amigo sorteado)
 
 }
