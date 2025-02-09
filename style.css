@@ -240,3 +240,21 @@ button {
     background: var(--color-alert-warning);
     color: white;
 }
+
+/*HABILITAR DESABILITAR SOM*/
+.sound-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1000;
+    box-shadow: none;
+}
+
+.sound-button img {
+    width: 30px;
+    height: 30px;
+}

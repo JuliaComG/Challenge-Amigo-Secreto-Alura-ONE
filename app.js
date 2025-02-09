@@ -4,11 +4,17 @@ const maximumListSize = 100;
 const buttonAdd = "button-add";
 const buttonDraw = "button-draw";
 
-document.getElementById("name").addEventListener("keydown", pressEnter);
+document.getElementById("name").addEventListener("keydown", keyPress);
 
-function pressEnter(event) {
+function keyPress(event) {
+    
     if (event.key === "Enter") {
+        playSound("enter");
         checkInput();
+    } else if (event.key === "Space" || event.key === " "){
+        playSound("enter");
+    } else if (event.key.length === 1 || event.key === "Backspace") { // Outras teclas comuns
+        playSound("random");
     }
 }
 
@@ -184,3 +190,63 @@ function drawFriend() {
     // Formar os pares (todos devem ter um par, ninguém pode tirar a si mesmo,  ninguém pode ter o mesmo amigo sorteado)
 
 }
+
+const keySounds = [
+    new Audio("sounds/keyboard-sounds1.mp3"),
+    new Audio("sounds/keyboard-sounds2.mp3"),
+    new Audio("sounds/keyboard-sounds3.mp3"),
+    new Audio("sounds/keyboard-sounds4.mp3"),
+    new Audio("sounds/keyboard-sounds5.mp3"),
+    new Audio("sounds/keyboard-sounds6.mp3"),
+    new Audio("sounds/keyboard-sounds7.mp3"),
+    new Audio("sounds/keyboard-sounds8.mp3"),
+    new Audio("sounds/keyboard-sounds9.mp3"),
+    new Audio("sounds/keyboard-sounds10.mp3"),
+    new Audio("sounds/keyboard-sounds11.mp3"),
+    new Audio("sounds/keyboard-sounds12.mp3"),
+    new Audio("sounds/keyboard-sounds13.mp3"),
+];
+
+const spaceSound = new Audio("sounds/keyboard-sounds14.mp3");
+const enterSound = new Audio("sounds/keyboard-sounds14.mp3");
+
+let isSoundEnabled = true;
+let lastSoundIndex = -1;
+
+function playSound(type) {
+    if (!isSoundEnabled) return;
+    let sound;
+     //sound.volume = 0.5; //50%
+   
+    if (type === "random") {
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * keySounds.length);
+        } while (randomIndex === lastSoundIndex);
+
+        lastSoundIndex = randomIndex;
+        sound = keySounds[randomIndex];
+
+    } else if (type === "space") {
+        sound = spaceSound;
+    } else if (type === "enter") {
+        sound = enterSound;
+    } else {
+        return; // Tipo de som desconhecido
+    }
+
+    sound.currentTime = 0;
+    sound.play();
+    document.getElementById("name").focus();
+}
+
+const toggleSoundButton = document.getElementById("toggle-sound");
+const soundIcon = document.getElementById("sound-icon");
+
+function toggleSound() {
+    isSoundEnabled = !isSoundEnabled;
+    soundIcon.src = isSoundEnabled ? "assets/sound-on-bl.png" : "assets/sound-off-bl.png";
+    document.getElementById("name").focus();
+}
+
+toggleSoundButton.addEventListener("click", toggleSound);
