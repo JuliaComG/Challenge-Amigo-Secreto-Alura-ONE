@@ -3,6 +3,8 @@ const minimumListSize = 3;
 const maximumListSize = 100;
 const buttonAdd = "button-add";
 const buttonDraw = "button-draw";
+const shortestName = 2; // Jó
+const longestName = 32; // Charlingtonglaevionbeecheknavare
 
 document.getElementById("name").addEventListener("keydown", keyPress);
 
@@ -19,6 +21,7 @@ function keyPress(event) {
 }
 
 function showUIAlertMessage (message, type){
+    playSound("alert");
     Toastify({
         text: message,
         duration: 10000,
@@ -88,8 +91,6 @@ function capitalizeFirstLetterOfEachWord(name) {
 }
 
 function isInvalidLength(name) {
-    const shortestName = 2; // Jó
-    const longestName = 32; // Charlingtonglaevionbeecheknavare
     return name.length < shortestName || name.length > longestName;
 }
 
@@ -103,6 +104,7 @@ function isInvalidName(name) {
 }
 
 function addName(name) {
+    playSound("addname");
     friendsList.push(name);
     cleanInput();
     updateUIList();
@@ -209,6 +211,8 @@ const keySounds = [
 
 const spaceSound = new Audio("sounds/keyboard-sounds14.mp3");
 const enterSound = new Audio("sounds/keyboard-sounds14.mp3");
+const alertSound = new Audio("sounds/alert-sound1.mp3");
+const addNameSound = new Audio("sounds/add-name-sound.mp3");
 
 let isSoundEnabled = true;
 let lastSoundIndex = -1;
@@ -216,8 +220,7 @@ let lastSoundIndex = -1;
 function playSound(type) {
     if (!isSoundEnabled) return;
     let sound;
-     //sound.volume = 0.5; //50%
-   
+    
     if (type === "random") {
         let randomIndex;
         do {
@@ -226,11 +229,14 @@ function playSound(type) {
 
         lastSoundIndex = randomIndex;
         sound = keySounds[randomIndex];
-
     } else if (type === "space") {
         sound = spaceSound;
     } else if (type === "enter") {
         sound = enterSound;
+    } else if (type === "alert") {
+        sound = alertSound;
+    } else if (type === "addname"){
+        sound = addNameSound;
     } else {
         return; // Tipo de som desconhecido
     }
