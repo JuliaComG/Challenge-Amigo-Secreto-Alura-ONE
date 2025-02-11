@@ -1,21 +1,57 @@
 let friendsList = [];
+
 const minimumListSize = 3;
 const maximumListSize = 100;
+
 const buttonAdd = "button-add";
 const buttonDraw = "button-draw";
+
 const shortestName = 2; // Jó
 const longestName = 32; // Charlingtonglaevionbeecheknavare
 
-document.getElementById("name").addEventListener("keydown", keyPress);
+const keySounds = [
+    new Audio("sounds/keyboard-sounds1.mp3"),
+    new Audio("sounds/keyboard-sounds2.mp3"),
+    new Audio("sounds/keyboard-sounds3.mp3"),
+    new Audio("sounds/keyboard-sounds4.mp3"),
+    new Audio("sounds/keyboard-sounds5.mp3"),
+    new Audio("sounds/keyboard-sounds6.mp3"),
+    new Audio("sounds/keyboard-sounds7.mp3"),
+    new Audio("sounds/keyboard-sounds8.mp3"),
+    new Audio("sounds/keyboard-sounds9.mp3"),
+    new Audio("sounds/keyboard-sounds10.mp3"),
+    new Audio("sounds/keyboard-sounds11.mp3"),
+    new Audio("sounds/keyboard-sounds12.mp3"),
+    new Audio("sounds/keyboard-sounds13.mp3"),
+];
+const spaceSound = new Audio("sounds/keyboard-sounds14.mp3");
+const alertSound = new Audio("sounds/alert-sound1.mp3");
+const liNameSound = new Audio("sounds/add-name-sound.mp3");
+
+keySounds.forEach(sound => {sound.load();})
+spaceSound.load();
+alertSound.load();
+liNameSound.load();
+
+let isSoundEnabled = true;
+let lastSoundIndex = -1;
+
+const keyPressDown = document.getElementById("name");
+keyPressDown.addEventListener("keydown", keyPress);
+
+const toggleSoundButton = document.getElementById("toggle-sound");
+toggleSoundButton.addEventListener("click", toggleSound);
+
+const soundIcon = document.getElementById("sound-icon");
 
 function keyPress(event) {
     
     if (event.key === "Enter") {
-        playSound("enter");
+        playSound("random");
         checkInput();
     } else if (event.key === "Space" || event.key === " "){
-        playSound("enter");
-    } else if (event.key.length === 1 || event.key === "Backspace") { // Outras teclas comuns
+        playSound("space");
+    } else if (event.key.length === 1 || event.key === "Backspace") {
         playSound("random");
     }
 }
@@ -51,7 +87,6 @@ function checkInput() {
 function isTheListFull(){
     return friendsList.length >= maximumListSize;
 }
-
 
 function validateName(name) {
     document.getElementById("name").focus();
@@ -150,6 +185,7 @@ function removeName(index) {
     friendsList.splice(index, 1);
     updateUIList();
     updateUIButtons();
+    playSound("addname");
 }
 
 function updateUIButtons(){
@@ -182,7 +218,7 @@ function enableButton(buttonId) {
     return;
 }
 
-function drawFriend() {
+function drawFriendEasy() {
     // avisar que não poderá mais sortear
     // 
     // desabilitar botão de sortear
@@ -193,29 +229,37 @@ function drawFriend() {
 
 }
 
-const keySounds = [
-    new Audio("sounds/keyboard-sounds1.mp3"),
-    new Audio("sounds/keyboard-sounds2.mp3"),
-    new Audio("sounds/keyboard-sounds3.mp3"),
-    new Audio("sounds/keyboard-sounds4.mp3"),
-    new Audio("sounds/keyboard-sounds5.mp3"),
-    new Audio("sounds/keyboard-sounds6.mp3"),
-    new Audio("sounds/keyboard-sounds7.mp3"),
-    new Audio("sounds/keyboard-sounds8.mp3"),
-    new Audio("sounds/keyboard-sounds9.mp3"),
-    new Audio("sounds/keyboard-sounds10.mp3"),
-    new Audio("sounds/keyboard-sounds11.mp3"),
-    new Audio("sounds/keyboard-sounds12.mp3"),
-    new Audio("sounds/keyboard-sounds13.mp3"),
-];
+function drawFriend(){
 
-const spaceSound = new Audio("sounds/keyboard-sounds14.mp3");
-const enterSound = new Audio("sounds/keyboard-sounds14.mp3");
-const alertSound = new Audio("sounds/alert-sound1.mp3");
-const addNameSound = new Audio("sounds/add-name-sound.mp3");
+}
 
-let isSoundEnabled = true;
-let lastSoundIndex = -1;
+function shuffleFriends(){
+    let shuffledList = [...friendsList];
+    for (let i = shuffledList.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledList[i], shuffledList[j]] = [shuffledList[j], shuffledList[i]];
+    }
+    return(shuffledList);
+}
+
+
+function didIGetMyself (myself){
+    //Eu tirei eu mesma?
+    //Comparar se a pessoa sorteada é si mesmo
+}
+
+function hasThisFriendAlreadyBeenDrawn (friend){
+    //Essa pessoa já foi sorteada ?
+    // Já tem um correspondente?
+}
+
+function showDrawResult(){
+    //Mostrar o resultado do sorteio
+}
+
+function changeTheDrawFriend(){
+
+}
 
 function playSound(type) {
     if (!isSoundEnabled) return;
@@ -231,23 +275,17 @@ function playSound(type) {
         sound = keySounds[randomIndex];
     } else if (type === "space") {
         sound = spaceSound;
-    } else if (type === "enter") {
-        sound = enterSound;
     } else if (type === "alert") {
         sound = alertSound;
     } else if (type === "addname"){
-        sound = addNameSound;
+        sound = liNameSound;
     } else {
-        return; // Tipo de som desconhecido
+        return;
     }
-
     sound.currentTime = 0;
     sound.play();
     document.getElementById("name").focus();
 }
-
-const toggleSoundButton = document.getElementById("toggle-sound");
-const soundIcon = document.getElementById("sound-icon");
 
 function toggleSound() {
     isSoundEnabled = !isSoundEnabled;
@@ -255,4 +293,3 @@ function toggleSound() {
     document.getElementById("name").focus();
 }
 
-toggleSoundButton.addEventListener("click", toggleSound);
