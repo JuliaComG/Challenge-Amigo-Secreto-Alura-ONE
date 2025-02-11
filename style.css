@@ -6,13 +6,17 @@
     --color-button-hover: #e55720;
     --color-button-disabled: #C4C4C4;
     --color-button-add: #FCBD21;
-    --color-button-add-hover: #ffde49;
+    --color-button-add-hover: #ecb528;
     --color-text: #444444;
     --color-white: #FFFFFF;
     --color-alert-info: #4B69FD;
     --color-alert-error: #F23005;
     --color-alert-sucess: #3D8C27;
     --color-alert-warning: #F29F05;
+    --color-border: #000;
+    --color-name-list: #4169e1;
+    --color-name-list-hover: #405fbd;
+    --color-box-shadow: #0000004d;
 }
 
 /* Estilos gerais */
@@ -50,12 +54,12 @@ body {
 .input-section {
     flex: 60%;
     background-color: var(--color-secondary);
-    border: 1px solid #000;
+    border: 1px solid var(--color-border);
     border-radius: 64px 64px 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 20px 100px;
     width: 100%;
 }
 
@@ -89,7 +93,7 @@ body {
 .input-name {
     width: 100%;
     padding: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-border);
     border-radius: 25px 0 0 25px;
     font-size: 16px;
 }
@@ -108,17 +112,17 @@ body {
     border-right: none;
     border-radius: 25px 0 0 25px;
     font-family: "Merriweather", serif;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
+    box-shadow: 0 4px 8px var(--color-box-shadow);
+} 
 
 /* Estilos de botão */
 button {
     padding: 15px 30px;
     font-family: "Inter", sans-serif;
     font-size: 16px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-border);
     border-radius: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px var(--color-box-shadow);
     cursor: pointer;
 }
 
@@ -137,32 +141,36 @@ button {
     cursor: not-allowed;
 }
 
-
 /* Listas dos nomes*/
 .name-list {
+    display: flex; /* Usa flexbox para organizar os itens */
+    flex-wrap: wrap; /* Quebra os itens em várias colunas */
+    max-height: 180px; /* Altura máxima equivalente a 6 linhas (ajuste conforme necessário) */
     list-style: none;
     padding: 0;
+    margin: 0;
+    gap: 5px; /* Espaçamento entre os itens */
 }
 
 .name-list li {
-    display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: royalblue;
+    width: auto;
+    box-sizing: border-box; /* Garante que o padding e a borda não aumentem o tamanho do item */
+    margin-bottom: 10px; /* Espaçamento entre as linhas */
+    background-color: var(--color-name-list); 
     color: white;
     padding: 10px 15px;
     border-radius: 25px;
-    border: 2px solid #000;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    margin: 5px 0;
+    border: 2px solid var(--color-border);
+    box-shadow: 2px 2px 5px var(--color-box-shadow);
     font-family: Arial, sans-serif;
     font-size: 16px;
-    width: auto;
 }
 
 .name-list li:hover{
-    background-color: rgb(64, 95, 189);
-}
+    background-color: var(--color-name-list-hover);
+} 
 
 /* Listas dos nomes botão de excluir*/
 .name-list button {
