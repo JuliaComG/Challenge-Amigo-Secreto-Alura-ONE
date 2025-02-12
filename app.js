@@ -6,6 +6,7 @@ const maximumListSize = 100;
 
 const buttonAdd = "button-add";
 const buttonDraw = "button-draw";
+const buttonRemoveList = "remove-all-list";
 
 const shortestName = 2; // Jó
 const longestName = 32; // Charlingtonglaevionbeecheknavare
@@ -207,6 +208,12 @@ function checkSizeFriendList() {
     } else {
         enableButton(buttonAdd);
     }
+
+    if (friendsList.length === 0) {
+        disableButton(buttonRemoveList);
+    } else {
+        enableButton(buttonRemoveList);
+    }   
 }
 
 function disableButton(buttonId) {
@@ -242,7 +249,6 @@ function shuffleFriends(){
     }
     return(shuffledList);
 }
-
 
 function didIGetMyself (myself){
     //Eu tirei eu mesma?
@@ -290,6 +296,13 @@ function playSound(type) {
 
 function toggleSound() {
     isSoundEnabled = !isSoundEnabled;
-    soundIcon.src = isSoundEnabled ? "assets/sound-on-bl.png" : "assets/sound-off-bl.png";
+    soundIcon.src = isSoundEnabled ? "assets/sound-high.svg" : "assets/sound-off.svg";
     document.getElementById("name").focus();
+}
+
+function clearList() {
+    friendsList = [];
+    updateUIList();
+    updateUIButtons();
+    showUIAlertMessage("Lista de amigos foi apagada.", "success");
 }

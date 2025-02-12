@@ -17,6 +17,9 @@
     --color-name-list: #4169e1;
     --color-name-list-hover: #405fbd;
     --color-box-shadow: #0000004d;
+    --color-remove-list: #D91122;
+    --color-remove-list-hover: #b31824;
+    --color-remove-list-disabled: #C4C4C4;
 }
 
 /* Estilos gerais */
@@ -50,6 +53,15 @@ body {
     padding: 40px 0 0;
 }
 
+.header-banner img {
+    width: 100%;
+    max-width: 450px;
+}
+
+.header-banner h1 {
+    text-align: right;
+}
+
 /* Seção de entrada */
 .input-section {
     flex: 60%;
@@ -59,8 +71,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 100px;
+    padding: 20px;
     width: 100%;
+    border-bottom: none;
 }
 
 /* Títulos */
@@ -99,8 +112,10 @@ body {
 }
 
 .button-container {
-    width: 300px;
     justify-content: center;
+    display: flex;
+    gap: 20px;
+    min-width: 600px;
 }
 
 /* Estilos de entrada de texto */
@@ -113,7 +128,7 @@ body {
     border-radius: 25px 0 0 25px;
     font-family: "Merriweather", serif;
     box-shadow: 0 4px 8px var(--color-box-shadow);
-} 
+}
 
 /* Estilos de botão */
 button {
@@ -141,38 +156,27 @@ button {
     cursor: not-allowed;
 }
 
-/* Listas dos nomes*/
+/*Listas*/
+ul {
+    list-style-type: none;
+    color: var(--color-text);
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
 .name-list {
-    display: flex; /* Usa flexbox para organizar os itens */
-    flex-wrap: wrap; /* Quebra os itens em várias colunas */
-    max-height: 180px; /* Altura máxima equivalente a 6 linhas (ajuste conforme necessário) */
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 180px;
     list-style: none;
     padding: 0;
     margin: 0;
-    gap: 5px; /* Espaçamento entre os itens */
+    gap: 5px;
+    max-width: 800px;
+    overflow-x: auto;
 }
 
-.name-list li {
-    align-items: center;
-    justify-content: space-between;
-    width: auto;
-    box-sizing: border-box; /* Garante que o padding e a borda não aumentem o tamanho do item */
-    margin-bottom: 10px; /* Espaçamento entre as linhas */
-    background-color: var(--color-name-list); 
-    color: white;
-    padding: 10px 15px;
-    border-radius: 25px;
-    border: 2px solid var(--color-border);
-    box-shadow: 2px 2px 5px var(--color-box-shadow);
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-}
-
-.name-list li:hover{
-    background-color: var(--color-name-list-hover);
-} 
-
-/* Listas dos nomes botão de excluir*/
 .name-list button {
     border: none;          
     background: none;      
@@ -195,7 +199,41 @@ button {
     outline: none;
 }
 
-/* Listas dos sorteado*/
+/*Lista de nomes barra de rolagem*/
+.name-list::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+.name-list::-webkit-scrollbar-track {
+    background: none;
+  }
+  
+ .name-list::-webkit-scrollbar-thumb {
+    background-color: var(--color-button);
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+  }
+
+  .name-list li {
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    background-color: var(--color-name-list); 
+    color: white;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: 2px solid var(--color-border);
+    box-shadow: 2px 2px 5px var(--color-box-shadow);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.name-list li:hover{
+    background-color: var(--color-name-list-hover);
+}
+/*Lista de nomes resultado*/
 .result-list {
     margin-top: 15px;
     color: #05DF05;
@@ -228,6 +266,50 @@ button {
     cursor: not-allowed;
 }
 
+/* Botão de sortear título */
+.remove-all-list {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 40px;
+    color: var(--color-white);
+    background-color: var(--color-remove-list);
+    font-size: 16px;
+}
+
+.remove-all-list img {
+    margin-right: 40px;
+    max-width: 34px;
+}
+
+.remove-all-list:hover {
+    background-color: var(--color-remove-list-hover);
+}
+
+.remove-all-list:disabled {
+    background-color: var(--color-remove-list-disabled);
+    cursor: not-allowed;
+}
+
+/*Rodapé*/
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: gray;
+    background-color: var(--color-secondary);
+    padding: 5px 0;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+}
+
+footer a {
+    color: var(--color-button);
+    text-decoration: underline;
+}
+
 /* Toastify - Alerts */
 .toastify.info {
     background: var(--color-alert-info);
@@ -249,7 +331,7 @@ button {
     color: white;
 }
 
-/*HABILITAR DESABILITAR SOM*/
+/*Icone de Som*/
 .sound-button {
     position: fixed;
     top: 20px;
@@ -265,4 +347,88 @@ button {
 .sound-button img {
     width: 30px;
     height: 30px;
+}
+
+/*Para smartphone*/
+@media only screen and (max-width: 800px) {
+    .main-title {
+        font-size: 36px;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .input-wrapper {
+        font-size: 14px;
+        flex-direction: column;
+    }
+
+    .input-title {
+        border-radius: 25px;
+    }
+
+    .input-name {
+        border-radius: 25px;
+        font-size: 14px;
+    }
+
+    .result-list {
+        font-size: 18px;
+    }
+
+    .header-banner img {
+        padding: 20px 5px 5px;
+        width: 50%;
+        max-width: 450px;   
+    }
+
+    .header-banner h1 {
+        font-size: 36px; 
+    }
+
+    .button-container {
+        justify-content: center;
+        display: block;
+        min-width: auto;
+        max-width: 300px;
+    }
+
+    .button-add {
+        padding: 10px 40px;
+        border-radius: 25px;
+    }
+
+    /* Botão de sortear título */
+    .button-draw {
+        min-width:  318px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 10px 40px;
+        color: var(--color-white);
+        background-color: var(--color-button);
+        font-size: 16px;
+    }
+
+    .button-draw img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .remove-all-list{
+        min-width:  318px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 10px 40px;
+        color: var(--color-white);
+        background-color: var(--color-remove-list);
+        font-size: 16px;
+    }
+    
+    .remove-all-list img {
+        width: 20px;
+        height: 20px;
+    }
 }

@@ -27,15 +27,21 @@
                 <button id="button-add" class="button-add" onclick="checkInput()">Adicionar</button>
             </div>
            
-            <div class="input-wrapper"></div>
-                <ul id="name-list" class="name-list" aria-labelledby="listaAmigos" role="list">
-                    <il>Nenhum amigo adicionado</il>
+            <div class="input-wrapper">
+                <ul id="name-list" class="name-list" aria-labelledby="name-list" role="list">
+                    <li>Nenhum amigo adicionado</li>
                 </ul>
+                
                 <ul id="resultado" class="result-list" aria-live="polite">
                 </ul>
-            </div>
+            </div>            
 
             <div class="button-container">
+                <button id="remove-all-list" class="remove-all-list" onclick="clearList()" aria-label="Apagar toda a lista" disabled="true">
+                    <img src="assets/trash.svg" alt="Ícone para sortear">
+                    Apagar lista
+                </button>
+                
                 <button id="button-draw" class="button-draw" onclick="shuffleFriends()" aria-label="Sortear amigo secreto" disabled="true">
                     <img src="assets/play_circle_outline.png" alt="Ícone para sortear">
                     Sortear amigo
@@ -43,12 +49,16 @@
             </div>
 
             <button id="toggle-sound" class="sound-button">
-                <img id="sound-icon" src="assets/sound-on-bl.png" alt="Ícone de som">
+                <img id="sound-icon" src="assets/sound-high.svg" alt="Ícone de som">
             </button>
 
         </section>
+
+        <footer class="footer">
+            <p class="footer-text">Challenge Amigo Secreto. Desenvolvido por <a href="https://github.com/JuliaComG" target="_blank">Giulia Armanelli</a></p>
+        </footer>
     </main>
-    
+
     <script src="toastify.js"></script>
     <script src="app.js" defer></script>
 </body>
