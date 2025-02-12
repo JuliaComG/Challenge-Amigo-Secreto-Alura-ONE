@@ -91,29 +91,36 @@ function isTheListFull(){
 }
 
 function validateName(name) {
-    document.getElementById("name").focus();
-
+    
     if (name === "" || name === null) {
         showUIAlertMessage("Por favor, preencha o campo nome. ", "warning");
+        focusInputName();
         return false;
     }
 
     if (isNaN(name) === false || isInvalidLength(name)) {
         showUIAlertMessage("Por favor, digite um nome válido. ", "error");
+        focusInputName();
         return false;
     }
 
     if (isNameDuplicated(name)) {
         showUIAlertMessage(`O nome ${name} já está na lista. `, "warning");
+        focusInputName();
         return false;
     }
 
     if (isInvalidName(name)) {
         showUIAlertMessage("Por favor, digite um nome válido (apenas letras e espaços). ", "error");
+        focusInputName();
         return false;
     } 
     
     return true;
+}
+
+function focusInputName () {
+    document.getElementById("name").focus();
 }
 
 function normalizeInput(name) {
@@ -291,7 +298,9 @@ function playSound(type) {
     }
     sound.currentTime = 0;
     sound.play();
+    
     document.getElementById("name").focus();
+ 
 }
 
 function toggleSound() {
