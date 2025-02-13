@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="toastify.min.css">
+    <link rel="stylesheet" href="assets/toastify/toastify.min.css">
+    <link rel="stylesheet" href="assets/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Amigo Secreto</title>
     <link rel="icon" type="image/x-icon" href="icon_page.png">
 </head>
@@ -37,11 +38,11 @@
 
             <div class="button-container">
                 <button id="remove-all-list" class="remove-all-list" onclick="clearList()" aria-label="Apagar toda a lista" disabled="true">
-                    <img src="assets/trash.svg" alt="Ícone para sortear">
+                    <img src="assets/trash.svg" alt="Apagar lista inteira">
                     Apagar lista
                 </button>
                 
-                <button id="button-draw" class="button-draw" onclick="drawFriendEasy()" aria-label="Sortear amigo secreto" disabled="true">
+                <button id="button-draw" class="button-draw" onclick="drawFriend()" aria-label="Sortear amigo secreto" disabled="true">
                     <img src="assets/shuffle.svg" alt="Ícone para sortear">
                     <span>Sortear amigo</span>
                 </button>
@@ -56,14 +57,17 @@
         <footer class="footer">
             <p class="footer-text">Challenge Amigo Secreto. Desenvolvido por <a href="https://github.com/JuliaComG" target="_blank">Giulia Armanelli</a></p>
         </footer>
-      
-        <div id="result-list" class="card-container"></div>
-       
+        
+        <div id="result-list" hidden>
+            <h2 class="section-title-result" id="section-title-result"></h2>
+            <div id="result-list-sub" class="card-container"></div>
+        </div>
+
     </main>
 
-    <script src="toastify.js"></script>
     <script src="app.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="assets/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="assets/toastify/toastify.js"></script>
+    <script src="assets/qrcodejs/qrcode.min.js"></script>
 </body>
 </html>

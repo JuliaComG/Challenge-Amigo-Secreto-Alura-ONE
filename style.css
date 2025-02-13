@@ -20,6 +20,8 @@
     --color-remove-list: #D91122;
     --color-remove-list-hover: #b31824;
     --color-remove-list-disabled: #C4C4C4;
+    --color-button-confirm: #3D8C27;
+    --color-button-confirm-hover: #2e6320;
 }
 
 /* Estilos gerais */
@@ -92,6 +94,18 @@ body {
     color: var(--color-primary);
     margin: 10px 0;
     text-align: center;
+}
+
+.section-title-result {
+    font-family: "Inter", serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--color-white);
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px; /* Espaçamento entre o título e os cards */
 }
 
 /* Contêineres de entrada e botão */
@@ -175,6 +189,7 @@ ul {
     gap: 5px;
     max-width: 800px;
     overflow-x: auto;
+    justify-content: center;
 }
 
 .name-list button {
@@ -188,6 +203,7 @@ ul {
     display: inline-block; 
     text-align: center;    
     box-shadow: none;
+    justify-content: center;
 }
 
 .name-list button:hover {
@@ -216,7 +232,7 @@ ul {
 
   .name-list li {
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: auto;
     box-sizing: border-box;
     margin-bottom: 10px;
@@ -347,9 +363,10 @@ footer a {
     display: flex;
     flex-wrap: wrap; 
     gap: 20px;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 20px;
     width: 100%;
+    padding:  30px 100px;   
 }
 
 /* Estilos para cada card */
@@ -358,11 +375,12 @@ footer a {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: calc(20% - 20px);
+    width: calc(10% - 20px);
     max-width: 300px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex-grow: 1;
+    border: 2px solid var(--color-border);
 }
 
 .card:hover {
@@ -370,6 +388,20 @@ footer a {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+.card.copied {
+    background-color: var(--color-alert-sucess); /* Verde */
+    color: white; /* Texto branco para melhor contraste */
+    
+}
+
+.card.copied h3{
+    color: white;
+}
+
+.card.copied:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 /* Estilos para o título do card */
 .card h3 {
     font-size: 1.5rem;
@@ -385,19 +417,29 @@ footer a {
     align-items: center;
 }
 
+
+
 /*Para smartphone*/
-@media only screen and (max-width: 800px) {
-    
+@media only screen and (max-width: 1400px) {
     .card {
         width: 100%;
     }
-    
+
+    .card-container {
+        display: flex;
+        flex-wrap: wrap; 
+        gap: 20px;
+        justify-content: center;
+        padding: 20px;
+        width: 100%;
+        padding:  none;   
+    }
+}
+
+@media only screen and (max-width: 800px) {
+        
     .main-title {
         font-size: 36px;
-    }
-
-    .section-title {
-        font-size: 24px;
     }
 
     .input-wrapper {
@@ -473,3 +515,137 @@ footer a {
         height: 20px;
     }
 }
+
+.result-title {
+    font-size: 24px;
+    font-family: "Merriweather", serif;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.result-element {
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    color: var(--color-text);
+    text-align: center;
+    margin-top: 10px;
+}
+
+.pairs-container {
+    margin-top: 20px;    
+}
+
+.pairs-container-list{
+    font-family: "Inter", sans-serif;
+    font-size: 50px;
+    color: var(--color-button-hover);
+    text-align: center;
+    
+}
+
+.pair {
+    padding: 10px;
+    font-size: 30px;
+}
+
+.pair p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--color-white);
+}
+
+
+/* Fundo do modal */
+.swal2-popup {
+    background-color: var(--color-secondary); /* Cor de fundo do modal */
+    color: var(--color-text); /* Cor do texto principal */
+    border-radius: 25px; /* Bordas arredondadas */
+    border: 2px solid var(--color-border); /* Borda */
+    box-shadow: 0 4px 8px var(--color-box-shadow); /* Sombra */
+}
+
+/* Título */
+.swal2-title {
+    color: var(--color-primary); /* Cor do título */
+    font-family: "Merriweather", serif; /* Fonte do título */
+    font-size: 24px; /* Tamanho do título */
+    font-weight: 900; /* Peso da fonte */
+    font-style: italic; /* Estilo itálico */
+}
+
+/* Texto do conteúdo */
+.swal2-content {
+    color: var(--color-text); /* Cor do texto */
+    font-family: "Inter", sans-serif; /* Fonte do conteúdo */
+    font-size: 16px; /* Tamanho do texto */
+}
+
+/* Botão de confirmação */
+.swal2-confirm {
+    background-color: var(--color-button-confirm); /* Cor de fundo */
+    color: var(--color-white); /* Cor do texto */
+    border-radius: 25px; /* Bordas arredondadas */
+    border: 2px solid var(--color-border); /* Borda */
+    font-family: "Inter", sans-serif; /* Fonte */
+    font-size: 16px; /* Tamanho do texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    box-shadow: 0 4px 8px var(--color-box-shadow); /* Sombra */
+}
+
+
+.swal2-confirm:hover {
+    background-color: var(--color-button-confirm-hover); /* Cor de fundo ao passar o mouse */
+}
+
+/* Botão de cancelar */
+.swal2-cancel {
+    background-color: var(--color-remove-list); /* Cor de fundo */
+    color: var(--color-white); /* Cor do texto */
+    border-radius: 25px; /* Bordas arredondadas */
+    border: 2px solid var(--color-border); /* Borda */
+    font-family: "Inter", sans-serif; /* Fonte */
+    font-size: 16px; /* Tamanho do texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    box-shadow: 0 4px 8px var(--color-box-shadow); /* Sombra */
+}
+
+.swal2-cancel:hover {
+    background-color: var(--color-remove-list-hover); /* Cor de fundo ao passar o mouse */
+}
+
+/* Ícone de sucesso */
+.swal2-success {
+    color: var(--color-alert-sucess); /* Cor do ícone de sucesso */
+}
+
+/* Ícone de erro */
+.swal2-error {
+    color: var(--color-alert-error); /* Cor do ícone de erro */
+}
+
+/* Ícone de aviso */
+.swal2-warning {
+    color: var(--color-alert-warning); /* Cor do ícone de aviso */
+}
+
+/* Ícone de informação */
+.swal2-info {
+    color: var(--color-alert-info); /* Cor do ícone de informação */
+}
+
+/* Campo de entrada */
+.swal2-input {
+    border: 2px solid var(--color-border); /* Borda */
+    border-radius: 25px; /* Bordas arredondadas */
+    font-family: "Merriweather", serif; /* Fonte */
+    font-size: 16px; /* Tamanho do texto */
+    padding: 10px; /* Espaçamento interno */
+    box-shadow: 0 4px 8px var(--color-box-shadow); /* Sombra */
+}
+
+.swal2-input:focus {
+    border-color: var(--color-primary); /* Cor da borda ao focar */
+}
+

@@ -1,6 +1,9 @@
 //let friendsList = [];
 let friendsList = ["Helena", "Alice", "Laura", "Maria Alice","Sophia","Manuela","Maitê","Liz","Cecília","Isabella","Luísa","Eloá","Heloísa","Júlia","Ayla","Maria Luísa","Isis","Elisa","Antonella","Valentina","Maya","Maria Júlia","Aurora","Lara","Maria Clara","Lívia","Esther","Giovanna","Sarah","Maria Cecília","Lorena","Beatriz","Rebeca","Luna","Olívia","Maria Helena","Mariana","Isadora","Melissa","Maria","Catarina","Lavínia","Alícia","Maria Eduarda","Agatha","Ana Liz","Yasmin","Emanuelly","Ana Clara","Clara","Ana Júlia","Marina","Stella","Jade","Maria Liz","Ana Laura","Maria Isis","Ana Luísa","Gabriela","Alana","Rafaela","Vitória","Isabelly","Bella","Milena","Clarice","Mirella","Ana","Emilly","Betina","Mariah","Zoe","Maria Vitória","Nicole","Laís","Melina","Bianca","Louise","Ana Beatriz","Heloíse","Malu","Melinda","Letícia","Maria Valentina","Chloe","Maria Elisa","Maria Heloísa","Maria Laura","Maria Fernanda","Ana Cecília","Hadassa","Ana Vitória","Diana","Ayla Sophia","Eduarda","Ana Lívia","Isabel","Elis","Pérola"]; //Para teste
+
 let drawnPairs = [];
+
+const baseUrlForQRCode = "https://juliacomg.github.io/Challenge-Amigo-Secreto-Alura-ONE/";
 
 const minimumListSize = 3;
 const maximumListSize = 100;
@@ -11,7 +14,7 @@ const buttonRemoveList = "remove-all-list";
 
 const iconDraw = "assets/shuffle.svg";
 const textDraw = "Sortear amigo";
-const linkDraw = "drawFriendEasy()";
+const linkDraw = "drawFriend()";
 
 const iconDoItAgain = "assets/repeat.svg";
 const textDoItAgain = "Novo sorteio";
@@ -44,8 +47,11 @@ spaceSound.load();
 alertSound.load();
 liNameSound.load();
 
+let didTheDrawHappen = false;
+let areYouReadyToDrawAgain = false;
 let isSoundEnabled = true;
 let lastSoundIndex = -1;
+let currentIndexForShowDrawNameByName = 0;
 
 const keyPressDown = document.getElementById("name");
 keyPressDown.addEventListener("keydown", keyPress);
@@ -54,6 +60,8 @@ const toggleSoundButton = document.getElementById("toggle-sound");
 toggleSoundButton.addEventListener("click", toggleSound);
 
 const soundIcon = document.getElementById("sound-icon");
+
+window.onload = showAlertIfParametersExist;
 
 function keyPress(event) {
     
@@ -65,6 +73,36 @@ function keyPress(event) {
     } else if (event.key.length === 1 || event.key === "Backspace") {
         playSound("random");
     }
+}
+
+function playSound(type) {
+    if (!isSoundEnabled) return;
+    let sound;
+    
+    if (type === "random") {
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * keySounds.length);
+        } while (randomIndex === lastSoundIndex);
+
+        lastSoundIndex = randomIndex;
+        sound = keySounds[randomIndex];
+    } else if (type === "space") {
+        sound = spaceSound;
+    } else if (type === "alert") {
+        sound = alertSound;
+    } else if (type === "addname"){
+        sound = liNameSound;
+    } else {
+        return;
+    }
+    sound.currentTime = 0;
+    sound.play();
+}
+
+function toggleSound() {
+    isSoundEnabled = !isSoundEnabled;
+    soundIcon.src = isSoundEnabled ? "assets/sound-high.svg" : "assets/sound-off.svg";
 }
 
 function showUIAlertMessage (message, type){
@@ -99,6 +137,17 @@ function isTheListFull(){
     return friendsList.length >= maximumListSize;
 }
 
+function normalizeInput(name) {
+    name = name.toLowerCase().trim();
+    return capitalizeFirstLetterOfEachWord(name);
+}
+
+function capitalizeFirstLetterOfEachWord(name) {
+    return name.split(" ")
+               .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+               .join(" ");
+}
+
 function validateName(name) {
     
     if (name === "" || name === null) {
@@ -131,17 +180,6 @@ function focusInputName () {
     document.getElementById("name").focus();
 }
 
-function normalizeInput(name) {
-    name = name.toLowerCase().trim();
-    return capitalizeFirstLetterOfEachWord(name);
-}
-
-function capitalizeFirstLetterOfEachWord(name) {
-    return name.split(" ")
-               .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-               .join(" ");
-}
-
 function isInvalidLength(name) {
     return name.length < shortestName || name.length > longestName;
 }
@@ -156,8 +194,8 @@ function isInvalidName(name) {
 }
 
 function addName(name) {
-    playSound("addname");
     friendsList.push(name);
+    playSound("addname");
     cleanInput();
     updateUIList();
     updateUIButtons();
@@ -165,6 +203,18 @@ function addName(name) {
 
 function cleanInput() {
     document.getElementById("name").value = "";
+}
+
+function clearList() {
+    friendsList = [];
+    updateUIList();
+    updateUIButtons();
+    showUIAlertMessage("Lista de amigos foi apagada.", "success");
+}
+
+function clearResultList() {
+    let resultList = document.getElementById("result-list");
+    resultList.innerHTML = " ";
 }
 
 function updateUIList() {
@@ -213,13 +263,7 @@ function removeName(index) {
 }
 
 function updateUIButtons(){
-    checkSizeFriendList();
-}
-
-function checkSizeFriendList() {
-    
     if (friendsList.length >= minimumListSize) {
-        console.log("size <3: "+buttonDraw);
         enableButton(buttonDraw);
     } else {
         disableButton(buttonDraw);
@@ -235,7 +279,18 @@ function checkSizeFriendList() {
         disableButton(buttonRemoveList);
     } else {
         enableButton(buttonRemoveList);
-    }   
+    } 
+
+    if (didTheDrawHappen === true) {
+        disableButton(buttonAdd);
+        disableButton(buttonRemoveList);
+    }
+
+    if (areYouReadyToDrawAgain === true) {
+        changeTextAndIconButton(textDoItAgain, iconDoItAgain, buttonDraw);
+        changeButtonLink(buttonDraw, linkDoItAgain);
+        enableButton(buttonDraw);
+    }
 }
 
 function disableButton(buttonId) {
@@ -248,65 +303,41 @@ function enableButton(buttonId) {
     return;
 }
 
-function playSound(type) {
-    if (!isSoundEnabled) return;
-    let sound;
-    
-    if (type === "random") {
-        let randomIndex;
-        do {
-            randomIndex = Math.floor(Math.random() * keySounds.length);
-        } while (randomIndex === lastSoundIndex);
+function changeTextAndIconButton(text, icon, buttonId) {
+    let button = document.getElementById(buttonId);
+    let newIcon = button.querySelector("img"); 
+    let newText = button.querySelector("span");
 
-        lastSoundIndex = randomIndex;
-        sound = keySounds[randomIndex];
-    } else if (type === "space") {
-        sound = spaceSound;
-    } else if (type === "alert") {
-        sound = alertSound;
-    } else if (type === "addname"){
-        sound = liNameSound;
-    } else {
-        return;
-    }
-    sound.currentTime = 0;
-    sound.play();
-    
-    document.getElementById("name").focus();
+    newIcon.src = icon;
+    newIcon.alt = text;
+    newText.textContent = text; 
 }
 
-function toggleSound() {
-    isSoundEnabled = !isSoundEnabled;
-    soundIcon.src = isSoundEnabled ? "assets/sound-high.svg" : "assets/sound-off.svg";
-    document.getElementById("name").focus();
+function changeButtonLink(buttonId, link){
+    let button = document.getElementById(buttonId);
+    button.setAttribute("onclick", link);
 }
 
-function clearList() {
-    friendsList = [];
-    updateUIList();
-    updateUIButtons();
-    showUIAlertMessage("Lista de amigos foi apagada.", "success");
-}
-
-function drawFriendEasy() {
+function drawFriend() {
     if (friendsList.length < minimumListSize) {
         showUIAlertMessage(`É necessário ter pelo menos ${minimumListSize} amigos para sortear.`, "error");
         return;
     }
-
-    disableButton(buttonRemoveList);
 
     let shuffledList = shuffleFriends();
 
     for (let i = 0; i < friendsList.length; i++) {
         let myself = friendsList[i];
         let drawnFriend = shuffledList[i];
-        drawnFriend = didIGetMyself(shuffledList, i, friendsList);
+        drawnFriend = didIGetMyself(shuffledList, friendsList, i);
         drawnPairs.push({ myself, drawnFriend });
     }
 
-    showDrawResult(drawnPairs);
+    didTheDrawHappen = true;
+    updateUIButtons();
+
     showUIAlertMessage("Sorteio realizado com sucesso!", "success");
+    wayToShowTheResult();
 }
 
 function shuffleFriends(){
@@ -318,7 +349,7 @@ function shuffleFriends(){
     return(shuffledList);
 }
 
-function didIGetMyself (shuffledList, index, friendsList){
+function didIGetMyself (shuffledList, friendsList, index){
     let i = index;
     let myself = friendsList[i];
     let drawnFriend = shuffledList[i];
@@ -336,9 +367,160 @@ function didIGetMyself (shuffledList, index, friendsList){
     return drawnFriend;
 }
 
-function generateCards(pairs) {
+function wayToShowTheResult(){
+    Swal.fire({
+        title: 'Como deseja visualizar o resultado?',
+        html: `<p>Escolha uma das opções abaixo para visualizar o resultado do sorteio:</p>
+                <ul>
+                    <li><strong>Modo Simples:</strong> Nesse será sorteado aleatoriamente nomes até que todos os nomes da lista tenha se esgotado.</li>
+                    <li><strong>Modo Pares:</strong> Aqui será mostrado os pares de amigos oculto. Mostrando a relação de todos os participantes e seus respectivos amigos para ser presenteado.</li>
+                    <li><strong>Modo QR Code:</strong> Esse é o modo mais sigiloso. Cada pessoa terá um QR Code, ao ler o código, você será redirecionado a uma página e só então seu amigo secreto será revelado. </li>
+                </ul>`,
+        icon: 'question',
+        input:'select',
+        inputOptions: {
+            'simple': 'Modo Simples',
+            'pairs': 'Modo Pares',
+            'qr': 'Modo QR Code'
+        },
+        inputPlaceholder: 'Selecione uma opção',
+        showCancelButton: true,
+        cancelButtonText: 'Fechar',
+        showConfirmButton: true,
+        confirmButtonText: 'Confirmar',
+
+        inputValidator: (value) => {
+            if (!value) {
+                return 'Você precisa selecionar uma opção!';
+            }
+        }
+    }).then((result) => {
+        Swal.close();
+        if (result.isConfirmed) {
+            document.getElementById("result-list").removeAttribute("hidden");
+            switch (result.value) {
+                case 'simple':
+                    showDrawNameByName();
+                    break;
+                case 'pairs':
+                    showDrawPairs();
+                    break;
+                case 'qr':
+                    showDrawQR();
+                    break;
+                case 'cancel':
+                    Swal.fire('Operação cancelada', 'Nenhuma ação foi tomada.', 'info');
+                    break;
+                default:
+                    Swal.fire('Erro', 'Opção inválida selecionada.', 'error');
+            }
+        }
+    });
+}
+
+function showLoadingAlert() {
+    Swal.fire({
+        title: 'Gerando QR Codes...',
+        html: 'Por favor, aguarde enquanto os QR Codes estão sendo gerados.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+}
+
+function closeLoadingAlert() {
+    Swal.close();
+}
+
+function showDrawNameByName() {
+    if (currentIndexForShowDrawNameByName >= drawnPairs.length) {
+        areYouReadyToDrawAgain = true;
+        updateUIButtons();
+        showUIAlertMessage("Todos os nomes foram sorteados.", "success");
+        return;
+    }
+
+    let pair = drawnPairs[currentIndexForShowDrawNameByName];
+    let resultList = document.getElementById("result-list");
+
+    resultList.innerHTML = "";
+
+    // Adicionando o título
+    let titleElement = document.createElement("h2");
+    titleElement.textContent = "🎉 Resultado do Sorteio 🎁";
+    titleElement.classList.add("section-title-result");
+    resultList.appendChild(titleElement);
+
+    // Adicionando o resultado
+    let resultElement = document.createElement("div");
+    resultElement.classList.add("pairs-container-list");
+    resultElement.textContent = `${pair.drawnFriend}`;
+    resultList.appendChild(resultElement);
+
+    currentIndexForShowDrawNameByName++;
+
+    if (currentIndexForShowDrawNameByName < drawnPairs.length) {
+        changeTextAndIconButton("Sortear amigo", iconDraw, buttonDraw);
+        changeButtonLink(buttonDraw, "showDrawNameByName()");
+    } else {
+        Swal.fire ({
+            titlle: "Todos os nomes foram sorteados!",
+            html: "Clique em 'Novo sorteio' para sortear novamente.",
+            icon: "success",
+            timer: 10000,
+        });
+        areYouReadyToDrawAgain = true;
+        updateUIButtons();
+    }
+}
+
+function showDrawPairs() {
     let resultList = document.getElementById("result-list");
     resultList.innerHTML = "";
+
+    // Adicionando o título
+    let titleElement = document.createElement("h2");
+    titleElement.textContent = "🎉 Resultado do Sorteio 🎁";
+    titleElement.classList.add("section-title-result");
+    resultList.appendChild(titleElement);
+
+    let pairsContainer = document.createElement("div");
+    pairsContainer.classList.add("pairs-container-list");
+
+    drawnPairs.forEach(pair => {
+        let pairElement = document.createElement("div");
+        pairElement.classList.add("pair");
+
+        let pairText = document.createElement("p");
+        pairText.textContent = `${pair.myself} tirou ${pair.drawnFriend}`;
+
+        pairElement.appendChild(pairText);
+        pairsContainer.appendChild(pairElement);
+    });
+
+    resultList.appendChild(pairsContainer);
+    areYouReadyToDrawAgain = true;
+    updateUIButtons();
+}
+
+function showDrawQR() {
+    showLoadingAlert();
+    setTimeout(() => {
+        generateCards(drawnPairs);
+        areYouReadyToDrawAgain = true;
+        updateUIButtons();
+        closeLoadingAlert();
+    }, 100);
+}
+
+function generateCards() {
+    let pairs = drawnPairs;
+    let resultList = document.getElementById("result-list-sub");
+
+    let titleElement = document.createElement("h2");
+    titleElement.textContent = "🎉 Resultado do Sorteio 🎁";
+    document.getElementById("section-title-result").innerHTML = titleElement.outerHTML;
 
     pairs.forEach(pair => {
         let card = document.createElement("div");
@@ -354,6 +536,12 @@ function generateCards(pairs) {
 
         let encryptedFriend = encryptData(pair.drawnFriend);
         let url = generateUniqueURL(pair.myself, encryptedFriend);
+        
+        card.addEventListener("click", () => {
+            copyToClipboard(url);
+            card.classList.add("copied");
+        });
+
         new QRCode(qrCodeDiv, {
             text: url,
             width: 100,
@@ -373,22 +561,14 @@ function decryptData(encryptedData) {
 }
 
 function generateUniqueURL(myself, encryptedFriend) {
-    const baseURL = "https://juliacomg.github.io/Challenge-Amigo-Secreto-Alura-ONE/";
-    const encodedMyself = encodeURIComponent(myself);
+    let baseURL = baseUrlForQRCode;
+    let encodedMyself = encodeURIComponent(myself);
     return `${baseURL}?myself=${encodedMyself}&friend=${encryptedFriend}`;
 }
 
-function showDrawResult(pairs) {
-    changeTextAndIconButton(textDoItAgain, iconDoItAgain, buttonDraw);
-    changeButtonLink(buttonDraw, linkDoItAgain);
-    enableButton(buttonDraw);
-
-    generateCards(pairs);
-}
-
 function showAlertIfParametersExist() {
-    const myself = getParameterByName('myself');
-    const encryptedFriend = getParameterByName('friend');
+    let myself = getParameterByName('myself');
+    let encryptedFriend = getParameterByName('friend');
 
     if (myself && encryptedFriend) {
         const drawnFriend = decryptData(encryptedFriend);
@@ -410,34 +590,25 @@ function getParameterByName(name, url = window.location.href) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-window.onload = showAlertIfParametersExist;
-
 function doItAgain(){
-    clearResultList();
+    didTheDrawHappen = false;
+    areYouReadyToDrawAgain = false;
+    currentIndexForShowDrawNameByName = 0;
+    drawnPairs = [];
+    friendsList = [];
     clearList();
-    updateUIButtons();
+    clearResultList();
     updateUIList();
+    updateUIButtons();
     changeTextAndIconButton (textDraw, iconDraw, buttonDraw);
     changeButtonLink(buttonDraw, linkDraw);
     showUIAlertMessage("Agora você pode fazer um novo sorteio.", "success");
 }
 
-function changeTextAndIconButton(text, icon, buttonId) {
-    let button = document.getElementById(buttonId);
-    let newIcon = button.querySelector("img"); 
-    let newText = button.querySelector("span");
-
-    newIcon.src = icon;
-    newIcon.alt = text;
-    newText.textContent = text; 
-}
-
-function changeButtonLink(buttonId, link){
-    let button = document.getElementById(buttonId);
-    button.setAttribute("onclick", link);
-}
-
-function clearResultList() {
-    let resultList = document.getElementById("result-list");
-    resultList.innerHTML = " ";
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showUIAlertMessage("Link copiado!", "success");
+    }).catch(() => {
+        showUIAlertMessage("Erro ao copiar o link para a área de transferência.", "error");
+    });
 }
