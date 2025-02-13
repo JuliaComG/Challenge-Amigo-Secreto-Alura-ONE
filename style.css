@@ -233,14 +233,6 @@ ul {
 .name-list li:hover{
     background-color: var(--color-name-list-hover);
 }
-/*Lista de nomes resultado*/
-.result-list {
-    margin-top: 15px;
-    color: #05DF05;
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
-}
 
 /* Botão de sortear título */
 .button-draw {
@@ -255,6 +247,7 @@ ul {
 
 .button-draw img {
     margin-right: 40px;
+    max-width: 34px;
 }
 
 .button-draw:hover {
@@ -349,8 +342,56 @@ footer a {
     height: 30px;
 }
 
+/* Estilos para o container de cards */
+.card-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+    justify-content: flex-start;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Estilos para cada card */
+.card {
+    background-color: var(--color-secondary);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(20% - 20px);
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-grow: 1;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para o título do card */
+.card h3 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+
+/* Estilos para o QR Code */
+.qr-code {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*Para smartphone*/
 @media only screen and (max-width: 800px) {
+    
+    .card {
+        width: 100%;
+    }
+    
     .main-title {
         font-size: 36px;
     }

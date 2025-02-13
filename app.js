@@ -1,5 +1,6 @@
-let friendsList = [];
-//let friendsList = ["Helena", "Alice", "Laura", "Maria Alice","Sophia","Manuela","Maitê","Liz","Cecília","Isabella","Luísa","Eloá","Heloísa","Júlia","Ayla","Maria Luísa","Isis","Elisa","Antonella","Valentina","Maya","Maria Júlia","Aurora","Lara","Maria Clara","Lívia","Esther","Giovanna","Sarah","Maria Cecília","Lorena","Beatriz","Rebeca","Luna","Olívia","Maria Helena","Mariana","Isadora","Melissa","Maria","Catarina","Lavínia","Alícia","Maria Eduarda","Agatha","Ana Liz","Yasmin","Emanuelly","Ana Clara","Clara","Ana Júlia","Marina","Stella","Jade","Maria Liz","Ana Laura","Maria Isis","Ana Luísa","Gabriela","Alana","Rafaela","Vitória","Isabelly","Bella","Milena","Clarice","Mirella","Ana","Emilly","Betina","Mariah","Zoe","Maria Vitória","Nicole","Laís","Melina","Bianca","Louise","Ana Beatriz","Heloíse","Malu","Melinda","Letícia","Maria Valentina","Chloe","Maria Elisa","Maria Heloísa","Maria Laura","Maria Fernanda","Ana Cecília","Hadassa","Ana Vitória","Diana","Ayla Sophia","Eduarda","Ana Lívia","Isabel","Elis","Pérola"]; //Para teste
+//let friendsList = [];
+let friendsList = ["Helena", "Alice", "Laura", "Maria Alice","Sophia","Manuela","Maitê","Liz","Cecília","Isabella","Luísa","Eloá","Heloísa","Júlia","Ayla","Maria Luísa","Isis","Elisa","Antonella","Valentina","Maya","Maria Júlia","Aurora","Lara","Maria Clara","Lívia","Esther","Giovanna","Sarah","Maria Cecília","Lorena","Beatriz","Rebeca","Luna","Olívia","Maria Helena","Mariana","Isadora","Melissa","Maria","Catarina","Lavínia","Alícia","Maria Eduarda","Agatha","Ana Liz","Yasmin","Emanuelly","Ana Clara","Clara","Ana Júlia","Marina","Stella","Jade","Maria Liz","Ana Laura","Maria Isis","Ana Luísa","Gabriela","Alana","Rafaela","Vitória","Isabelly","Bella","Milena","Clarice","Mirella","Ana","Emilly","Betina","Mariah","Zoe","Maria Vitória","Nicole","Laís","Melina","Bianca","Louise","Ana Beatriz","Heloíse","Malu","Melinda","Letícia","Maria Valentina","Chloe","Maria Elisa","Maria Heloísa","Maria Laura","Maria Fernanda","Ana Cecília","Hadassa","Ana Vitória","Diana","Ayla Sophia","Eduarda","Ana Lívia","Isabel","Elis","Pérola"]; //Para teste
+let drawnPairs = [];
 
 const minimumListSize = 3;
 const maximumListSize = 100;
@@ -7,6 +8,14 @@ const maximumListSize = 100;
 const buttonAdd = "button-add";
 const buttonDraw = "button-draw";
 const buttonRemoveList = "remove-all-list";
+
+const iconDraw = "assets/shuffle.svg";
+const textDraw = "Sortear amigo";
+const linkDraw = "drawFriendEasy()";
+
+const iconDoItAgain = "assets/repeat.svg";
+const textDoItAgain = "Novo sorteio";
+const linkDoItAgain = "doItAgain()";
 
 const shortestName = 2; // Jó
 const longestName = 32; // Charlingtonglaevionbeecheknavare
@@ -115,7 +124,6 @@ function validateName(name) {
         focusInputName();
         return false;
     } 
-    
     return true;
 }
 
@@ -162,13 +170,20 @@ function cleanInput() {
 function updateUIList() {
     let uiList = document.getElementById("name-list");
     uiList.innerHTML = "";
-    
-    sortListAlphabetically();
 
-    friendsList.forEach((name, index) => {
-        let li = createListItem(name, index);
+    if (friendsList.length === 0) {
+        let li = document.createElement("li");
+        li.textContent = "Nenhum amigo adicionado.";
         uiList.appendChild(li);
-    });
+        return;
+    }else{
+        sortListAlphabetically();
+
+        friendsList.forEach((name, index) => {
+            let li = createListItem(name, index);
+            uiList.appendChild(li);
+        });
+    }
 }
 
 function sortListAlphabetically() {
@@ -233,48 +248,6 @@ function enableButton(buttonId) {
     return;
 }
 
-function drawFriendEasy() {
-    // avisar que não poderá mais sortear
-    // 
-    // desabilitar botão de sortear
-    
-    // Regra de negócio
-    // Embaralhar nome
-    // Formar os pares (todos devem ter um par, ninguém pode tirar a si mesmo,  ninguém pode ter o mesmo amigo sorteado)
-
-}
-
-function drawFriend(){
-
-}
-
-function shuffleFriends(){
-    let shuffledList = [...friendsList];
-    for (let i = shuffledList.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledList[i], shuffledList[j]] = [shuffledList[j], shuffledList[i]];
-    }
-    return(shuffledList);
-}
-
-function didIGetMyself (myself){
-    //Eu tirei eu mesma?
-    //Comparar se a pessoa sorteada é si mesmo
-}
-
-function hasThisFriendAlreadyBeenDrawn (friend){
-    //Essa pessoa já foi sorteada ?
-    // Já tem um correspondente?
-}
-
-function showDrawResult(){
-    //Mostrar o resultado do sorteio
-}
-
-function changeTheDrawFriend(){
-
-}
-
 function playSound(type) {
     if (!isSoundEnabled) return;
     let sound;
@@ -300,7 +273,6 @@ function playSound(type) {
     sound.play();
     
     document.getElementById("name").focus();
- 
 }
 
 function toggleSound() {
@@ -314,4 +286,151 @@ function clearList() {
     updateUIList();
     updateUIButtons();
     showUIAlertMessage("Lista de amigos foi apagada.", "success");
+}
+
+function drawFriendEasy() {
+    if (friendsList.length < minimumListSize) {
+        showUIAlertMessage(`É necessário ter pelo menos ${minimumListSize} amigos para sortear.`, "error");
+        return;
+    }
+
+    disableButton(buttonRemoveList);
+
+    let shuffledList = shuffleFriends();
+
+    for (let i = 0; i < friendsList.length; i++) {
+        let myself = friendsList[i];
+        let drawnFriend = shuffledList[i];
+        drawnFriend = didIGetMyself(shuffledList, i, friendsList);
+        drawnPairs.push({ myself, drawnFriend });
+    }
+
+    showDrawResult(drawnPairs);
+    showUIAlertMessage("Sorteio realizado com sucesso!", "success");
+}
+
+function shuffleFriends(){
+    let shuffledList = [...friendsList];
+    for (let i = shuffledList.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledList[i], shuffledList[j]] = [shuffledList[j], shuffledList[i]];
+    }
+    return(shuffledList);
+}
+
+function didIGetMyself (shuffledList, index, friendsList){
+    let i = index;
+    let myself = friendsList[i];
+    let drawnFriend = shuffledList[i];
+
+    if (myself === drawnFriend) {
+        if (i < friendsList.length - 1) {
+            [shuffledList[i], shuffledList[i + 1]] = [shuffledList[i + 1], shuffledList[i]];
+            drawnFriend = shuffledList[i];
+        } else {
+            //troca com a primeira
+            [shuffledList[i], shuffledList[0]] = [shuffledList[0], shuffledList[i]];
+            drawnFriend = shuffledList[i];
+        }
+    }
+    return drawnFriend;
+}
+
+function generateCards(pairs) {
+    let resultList = document.getElementById("result-list");
+    resultList.innerHTML = "";
+
+    pairs.forEach(pair => {
+        let card = document.createElement("div");
+        card.classList.add("card");
+
+        let cardTitle = document.createElement("h3");
+        cardTitle.textContent = pair.myself;
+        card.appendChild(cardTitle);
+
+        let qrCodeDiv = document.createElement("div");
+        qrCodeDiv.classList.add("qr-code");
+        card.appendChild(qrCodeDiv);
+
+        let encryptedURL = encryptURL(pair);
+        new QRCode(qrCodeDiv, {
+            text: encryptedURL,
+            width: 100,
+            height: 100
+        });
+
+        resultList.appendChild(card);
+    });
+}
+
+function encryptURL(pair) {
+    const baseURL = "https://juliacomg.github.io/Challenge-Amigo-Secreto-Alura-ONE/";
+    const encodedMyself = encodeURIComponent(pair.myself);
+    const encodedDrawnFriend = encodeURIComponent(pair.drawnFriend);
+    const url = `${baseURL}?myself=${encodedMyself}&friend=${encodedDrawnFriend}`;
+    
+    return btoa(url);
+}
+
+function decryptURL(encryptedURL) {
+    return atob(encryptedURL);
+}
+
+function showDrawResult(pairs) {
+    changeTextAndIconButton(textDoItAgain, iconDoItAgain, buttonDraw);
+    changeButtonLink(buttonDraw, linkDoItAgain);
+    enableButton(buttonDraw);
+
+    generateCards(pairs);
+}
+
+function showAlertIfParametersExist() {
+    const encryptedURL = getParameterByName('data');
+    if (encryptedURL) {
+        const decryptedURL = decryptURL(encryptedURL);
+        const urlParams = new URLSearchParams(decryptedURL.split('?')[1]);
+        const myself = urlParams.get('myself');
+        const friend = urlParams.get('friend');
+
+        if (myself && friend) {
+            Swal.fire({
+                title: 'Boas-vindas!',
+                html: `Olá, <strong>${myself}</strong>!<br>Você tirou <strong>${friend}</strong> no amigo secreto.`,
+                icon: 'success',
+                confirmButtonText: 'Fechar'
+            });
+        }
+    }
+}
+
+window.onload = showAlertIfParametersExist;
+
+function doItAgain(){
+    clearResultList();
+    clearList();
+    updateUIButtons();
+    updateUIList();
+    changeTextAndIconButton (textDraw, iconDraw, buttonDraw);
+    changeButtonLink(buttonDraw, linkDraw);
+    showUIAlertMessage("Agora você pode fazer um novo sorteio.", "success");
+}
+
+function changeTextAndIconButton(text, icon, buttonId) {
+    let button = document.getElementById(buttonId);
+    let newIcon = button.querySelector("img"); 
+    let newText = button.querySelector("span");
+
+    newIcon.src = icon;
+    newIcon.alt = text;
+    newText.textContent = text; 
+}
+
+function changeButtonLink(buttonId, link){
+    let button = document.getElementById(buttonId);
+    button.setAttribute("onclick", link);
+}
+
+function clearResultList() {
+    let resultList = document.getElementById("result-list");
+    resultList.innerHTML = " ";
 }

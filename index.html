@@ -32,8 +32,7 @@
                     <li>Nenhum amigo adicionado</li>
                 </ul>
                 
-                <ul id="resultado" class="result-list" aria-live="polite">
-                </ul>
+                
             </div>            
 
             <div class="button-container">
@@ -42,9 +41,9 @@
                     Apagar lista
                 </button>
                 
-                <button id="button-draw" class="button-draw" onclick="shuffleFriends()" aria-label="Sortear amigo secreto" disabled="true">
-                    <img src="assets/play_circle_outline.png" alt="Ícone para sortear">
-                    Sortear amigo
+                <button id="button-draw" class="button-draw" onclick="drawFriendEasy()" aria-label="Sortear amigo secreto" disabled="true">
+                    <img src="assets/shuffle.svg" alt="Ícone para sortear">
+                    <span>Sortear amigo</span>
                 </button>
             </div>
 
@@ -57,9 +56,14 @@
         <footer class="footer">
             <p class="footer-text">Challenge Amigo Secreto. Desenvolvido por <a href="https://github.com/JuliaComG" target="_blank">Giulia Armanelli</a></p>
         </footer>
+      
+        <div id="result-list" class="card-container"></div>
+       
     </main>
 
     <script src="toastify.js"></script>
     <script src="app.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </body>
 </html>
