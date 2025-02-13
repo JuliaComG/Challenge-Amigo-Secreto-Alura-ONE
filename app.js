@@ -352,9 +352,10 @@ function generateCards(pairs) {
         qrCodeDiv.classList.add("qr-code");
         card.appendChild(qrCodeDiv);
 
-        let encryptedURL = encryptURL(pair);
+        let encryptedFriend = encryptData(pair.drawnFriend);
+        let url = generateUniqueURL(pair.myself, encryptedFriend);
         new QRCode(qrCodeDiv, {
-            text: encryptedURL,
+            text: url,
             width: 100,
             height: 100
         });
@@ -363,17 +364,18 @@ function generateCards(pairs) {
     });
 }
 
-function encryptURL(pair) {
-    const baseURL = "https://juliacomg.github.io/Challenge-Amigo-Secreto-Alura-ONE/";
-    const encodedMyself = encodeURIComponent(pair.myself);
-    const encodedDrawnFriend = encodeURIComponent(pair.drawnFriend);
-    const url = `${baseURL}?myself=${encodedMyself}&friend=${encodedDrawnFriend}`;
-    
-    return btoa(url);
+function encryptData(data) {
+    return btoa(encodeURIComponent(data));
 }
 
-function decryptURL(encryptedURL) {
-    return atob(encryptedURL);
+function decryptData(encryptedData) {
+    return decodeURIComponent(atob(encryptedData));
+}
+
+function generateUniqueURL(myself, encryptedFriend) {
+    const baseURL = "https://juliacomg.github.io/Challenge-Amigo-Secreto-Alura-ONE/";
+    const encodedMyself = encodeURIComponent(myself);
+    return `${baseURL}?myself=${encodedMyself}&friend=${encryptedFriend}`;
 }
 
 function showDrawResult(pairs) {
@@ -385,21 +387,17 @@ function showDrawResult(pairs) {
 }
 
 function showAlertIfParametersExist() {
-    const encryptedURL = getParameterByName('data');
-    if (encryptedURL) {
-        const decryptedURL = decryptURL(encryptedURL);
-        const urlParams = new URLSearchParams(decryptedURL.split('?')[1]);
-        const myself = urlParams.get('myself');
-        const friend = urlParams.get('friend');
+    const myself = getParameterByName('myself');
+    const encryptedFriend = getParameterByName('friend');
 
-        if (myself && friend) {
-            Swal.fire({
-                title: 'Boas-vindas!',
-                html: `Olá, <strong>${myself}</strong>!<br>Você tirou <strong>${friend}</strong> no amigo secreto.`,
-                icon: 'success',
-                confirmButtonText: 'Fechar'
-            });
-        }
+    if (myself && encryptedFriend) {
+        const drawnFriend = decryptData(encryptedFriend);
+        Swal.fire({
+            title: 'Boas-vindas!',
+            html: `Olá, <strong>${myself}</strong>!<br>Você tirou <strong>${drawnFriend}</strong> no amigo secreto.`,
+            icon: 'success',
+            confirmButtonText: 'Fechar'
+        });
     }
 }
 
