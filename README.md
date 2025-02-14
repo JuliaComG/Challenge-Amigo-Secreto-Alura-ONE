@@ -1,12 +1,23 @@
-# Amigo Secreto - Sorteio de Nomes
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Merriweather&size=50&duration=3000&pause=800&color=FF5613&center=true&width=830&height=90&lines=Amigo+Secreto+%F0%9F%8E%81;Secret+Santa+%F0%9F%8E%85%F0%9F%8F%BB;Angelito+%F0%9F%8E%81;Amigo+Oculto+%F0%9F%8E%85%F0%9F%8F%BB;Amigo+Invisible+%F0%9F%8E%81)](https://git.io/typing-svg)
 
-Bem-vindo ao Amigo Secreto, um projeto desenvolvido para facilitar o sorteio de amigos secretos de forma divertida e interativa. Este projeto foi criado por mim (Giulia Armanelli) como parte do desafio do programa Alura ONE.
+Bem-vindo ao Amigo Secreto, um projeto desenvolvido para facilitar o sorteio de amigos secretos de forma divertida e interativa. Este projeto foi criado por mim (Giulia Armanelli) como parte do desafio do programa <Hello, ONE!> da Oracle Next Education (ONE) ofertada pela Oracle Brasil em parceria com a Alura.
+
+<p align="center">
+  <a href="#-tecnologias-utilizadas">🛠 Tecnologias Utilizadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias-utilizadas">🧠 Como Usar</a>
+</p>
 
 ## Visão Geral
 
 O Amigo Secreto é uma aplicação web que permite aos usuários adicionar nomes de amigos, realizar o sorteio de pares e visualizar os resultados de diferentes maneiras. A aplicação oferece três modos de visualização do resultado: Modo Simples, Modo Pares e Modo QR Code, garantindo que o sorteio seja feito de forma justa e sigilosa.
 
-## Funcionalidades
+## 🌍 Acesse o Projeto
+
+Você pode acessar o projeto online clicando no link abaixo: 👉🏻 [SÓ CLICAR AQUI](https://juliacomg.github.io/Challenge-Amigo-Secreto-Alura-ONE/) 👈🏻
+
+> EM BREVE VÍDEO COM AS FUNCIONALIDADES
+
+## ✨ Funcionalidades
 
 - **Adicionar Nomes**: Insira os nomes dos participantes do amigo secreto.
 - **Remover Nomes**: Permite remover nomes individuais ou limpar toda a lista.
@@ -19,7 +30,9 @@ O Amigo Secreto é uma aplicação web que permite aos usuários adicionar nomes
   - Modo QR Code: Gera um QR Code para cada participante, que ao ser escaneado, revela o amigo secreto.
 - **Responsividade:** A aplicação é totalmente responsiva, funcionando bem em dispositivos móveis e desktops.
 
-## Tecnologias Utilizadas
+> Para entender mais sobre o funcionamento do site e como o código foi construido veja o [Diagrama de Fluxo](#diagramas-de-fluxo).
+
+## 🛠 Tecnologias Utilizadas
 
 - **HTML5:** Estruturação da página web.
 - **CSS3:** Estilização e design responsivo.
@@ -28,34 +41,49 @@ O Amigo Secreto é uma aplicação web que permite aos usuários adicionar nomes
 - **SweetAlert2:** Biblioteca para modais e caixas de diálogo.
 - **QRCode.js:** Biblioteca para geração de QR Codes.
 
-## Como Usar
+## 🧠 Como Usar
 
 ### Pré-requisitos
 
 - Navegador web moderno (Google Chrome, Mozilla Firefox, Safari, etc.).
 - Conexão com a internet (para carregar as bibliotecas externas).
 
-### Instruções
+### 📋 Instruções
 
-1. Adicionar Nomes:
+1. [Acesse o site](https://juliacomg.github.io/Challenge-Amigo-Secreto-Alura-ONE/)
+OU
+Clone o repositório
+```
+# Via HTTPS:
+https://github.com/JuliaComG/Challenge-Amigo-Secreto-Alura-ONE.git
+
+# Via SSH:
+git@github.com:JuliaComG/Challenge-Amigo-Secreto-Alura-ONE.git
+
+# Faça download do ZIP do arquivo
+https://github.com/JuliaComG/Challenge-Amigo-Secreto-Alura-ONE/archive/refs/heads/main.zip
+```
+- Entre na pasta do projeto, e execute o arquivo `index.html`
+   
+2. Adicionar Nomes:
 - No campo de texto, digite o nome de um amigo e clique em "Adicionar" ou pressione "Enter".
 - Os nomes serão exibidos na lista abaixo do campo de entrada.
 
-2. Realizar o Sorteio:
+3. Realizar o Sorteio:
 - Após adicionar pelo menos 3 nomes, o botão "Sortear amigo" será habilitado.
 - Clique em "Sortear amigo" para realizar o sorteio.
 
-3. Visualizar Resultados:
+4. Visualizar Resultados:
 - Após o sorteio, você poderá escolher entre três modos de visualização:
 - Modo Simples: Mostra os nomes sorteados um por um.
 - Modo Pares: Exibe todos os pares de amigos secretos.
 - Modo QR Code: Gera um QR Code para cada participante, que ao ser escaneado, revela o amigo secreto.
 
-4. Gerenciar a Lista:
+5. Gerenciar a Lista:
 - Para remover um nome individualmente, clique no botão "X" ao lado do nome na lista.
 - Para limpar toda a lista, clique no botão "Apagar lista".
 
-5. Efeitos Sonoros:
+6. Efeitos Sonoros:
 - A aplicação possui efeitos sonoros que podem ser habilitados ou desabilitados clicando no ícone de som no canto superior esquerdo da tela.
 
 
@@ -82,7 +110,7 @@ O Amigo Secreto é uma aplicação web que permite aos usuários adicionar nomes
 
 ```
 
-## Contribuição
+## 🖥️ Contribuição
 
 Contribuições são bem-vindas! Se você deseja contribuir para este projeto, siga os passos abaixo:
 
@@ -92,9 +120,9 @@ Contribuições são bem-vindas! Se você deseja contribuir para este projeto, s
 4. Push para a branch (`git push origin feature/nova-feature`).
 5. Abra um Pull Request.
 
-## Licença
+## 🛡️ Licença
 
-Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Este projeto está sob a licença MIT. Isso significa que você pode utilizá-lo, modificá-lo e distribuí-lo livremente, desde que mantenha os créditos.
 
 ## Contato
 
@@ -105,9 +133,25 @@ Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em c
 - Linkdin: https://www.linkedin.com/in/giulia-armanelli/
 - Email: garmanelli.dev@gmail.com
 
+## Créditos e Agradecimentos 
+
+Quero agradecer à [Alura](https://github.com/alura-cursos) e à [Oracle](https://github.com/oracle) pelo conhecimento compartilhado e pelas oportunidades proporcionadas por meio do programa **<Hello, ONE!>**.
+
+## Certificação
+
+Fui reconhecida com a seguinte insígnia pelo programa <Hello, ONE!> da Alura + Oracle:
+
+![Insígnia aluno ONE](Link)
+
+
 ## Diagramas de Fluxo
 
 Abaixo estão os diagramas de fluxo que ilustram o funcionamento do site Amigo Secreto. Eles ajudam a entender como os usuários interagem com a aplicação e como os dados são processados.
+
+<p align="center">
+  <a href="#fluxo-principal-do-site---simplicado">Simplificado</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#fluxo-detalhado-com-nome-das-funções">Detallhado</a>
+</p>
 
 ### Fluxo Principal do Site - Simplicado
 
