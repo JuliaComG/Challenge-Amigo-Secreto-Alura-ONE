@@ -1,7 +1,7 @@
-//let friendsList = [];
-let friendsList = ["Helena", "Alice", "Laura", "Maria Alice","Sophia","Manuela","Maitê","Liz","Cecília","Isabella","Luísa","Eloá","Heloísa","Júlia","Ayla","Maria Luísa","Isis","Elisa","Antonella","Valentina","Maya","Maria Júlia","Aurora","Lara","Maria Clara","Lívia","Esther","Giovanna","Sarah","Maria Cecília","Lorena","Beatriz","Rebeca","Luna","Olívia","Maria Helena","Mariana","Isadora","Melissa","Maria","Catarina","Lavínia","Alícia","Maria Eduarda","Agatha","Ana Liz","Yasmin","Emanuelly","Ana Clara","Clara","Ana Júlia","Marina","Stella","Jade","Maria Liz","Ana Laura","Maria Isis","Ana Luísa","Gabriela","Alana","Rafaela","Vitória","Isabelly","Bella","Milena","Clarice","Mirella","Ana","Emilly","Betina","Mariah","Zoe","Maria Vitória","Nicole","Laís","Melina","Bianca","Louise","Ana Beatriz","Heloíse","Malu","Melinda","Letícia","Maria Valentina","Chloe","Maria Elisa","Maria Heloísa","Maria Laura","Maria Fernanda","Ana Cecília","Hadassa","Ana Vitória","Diana","Ayla Sophia","Eduarda","Ana Lívia","Isabel","Elis","Pérola"]; //Para teste
-
 let drawnPairs = [];
+let friendsList = [];
+
+//let friendsList = ["Helena", "Alice", "Laura", "Maria Alice","Sophia","Manuela","Maitê","Liz","Cecília","Isabella","Luísa","Eloá","Heloísa","Júlia","Ayla","Maria Luísa","Isis","Elisa","Antonella","Valentina","Maya","Maria Júlia","Aurora","Lara","Maria Clara","Lívia","Esther","Giovanna","Sarah","Maria Cecília","Lorena","Beatriz","Rebeca","Luna","Olívia","Maria Helena","Mariana","Isadora","Melissa","Maria","Catarina","Lavínia","Alícia","Maria Eduarda","Agatha","Ana Liz","Yasmin","Emanuelly","Ana Clara","Clara","Ana Júlia","Marina","Stella","Jade","Maria Liz","Ana Laura","Maria Isis","Ana Luísa","Gabriela","Alana","Rafaela","Vitória","Isabelly","Bella","Milena","Clarice","Mirella","Ana","Emilly","Betina","Mariah","Zoe","Maria Vitória","Nicole","Laís","Melina","Bianca","Louise","Ana Beatriz","Heloíse","Malu","Melinda","Letícia","Maria Valentina","Chloe","Maria Elisa","Maria Heloísa","Maria Laura","Maria Fernanda","Ana Cecília","Hadassa","Ana Vitória","Diana","Ayla Sophia","Eduarda","Ana Lívia","Isabel","Elis","Pérola"]; //Para teste
 
 const baseUrlForQRCode = "https://juliacomg.github.io/Challenge-Amigo-Secreto-Alura-ONE/";
 
@@ -446,13 +446,11 @@ function showDrawNameByName() {
 
     resultList.innerHTML = "";
 
-    // Adicionando o título
     let titleElement = document.createElement("h2");
     titleElement.textContent = "🎉 Resultado do Sorteio 🎁";
     titleElement.classList.add("section-title-result");
     resultList.appendChild(titleElement);
 
-    // Adicionando o resultado
     let resultElement = document.createElement("div");
     resultElement.classList.add("pairs-container-list");
     resultElement.textContent = `${pair.drawnFriend}`;
@@ -479,7 +477,6 @@ function showDrawPairs() {
     let resultList = document.getElementById("result-list");
     resultList.innerHTML = "";
 
-    // Adicionando o título
     let titleElement = document.createElement("h2");
     titleElement.textContent = "🎉 Resultado do Sorteio 🎁";
     titleElement.classList.add("section-title-result");
