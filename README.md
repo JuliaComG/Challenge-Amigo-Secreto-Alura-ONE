@@ -63,8 +63,6 @@ https://github.com/user-attachments/assets/0f2115db-b73c-4073-9746-d0a33baf0f4e
 - **SweetAlert2:** Biblioteca para modais e caixas de diálogo.
 - **QRCode.js:** Biblioteca para geração de QR Codes.
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Merriweather&size=50&duration=3000&pause=800&color=4B69FD&center=true&width=830&height=90&lines=Amigo+Secreto+%F0%9F%8E%81;Secret+Santa+%F0%9F%8E%85%F0%9F%8F%BB;Angelito+%F0%9F%8E%81;Amigo+Oculto+%F0%9F%8E%85%F0%9F%8F%BB;Amigo+Invisible+%F0%9F%8E%81)](https://git.io/typing-svg)
-
 ## 🧠 Como Usar
 
 ### Pré-requisitos
