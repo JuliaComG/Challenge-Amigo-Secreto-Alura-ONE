@@ -1,4 +1,4 @@
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Merriweather&size=50&duration=3000&pause=800&color=FF5613&center=true&width=830&height=90&lines=Amigo+Secreto+%F0%9F%8E%81;Secret+Santa+%F0%9F%8E%85%F0%9F%8F%BB;Angelito+%F0%9F%8E%81;Amigo+Oculto+%F0%9F%8E%85%F0%9F%8F%BB;Amigo+Invisible+%F0%9F%8E%81)](https://git.io/typing-svg)
+![amigoSecretoBanner](https://github.com/user-attachments/assets/45b2a7ed-fdbe-4bcb-ab5f-264eec4d6e20)
 
 Bem-vindo ao Amigo Secreto, um projeto desenvolvido para facilitar o sorteio de amigos secretos de forma divertida e interativa. Este projeto foi criado por mim (Giulia Armanelli) como parte do desafio do programa <Hello, ONE!> da Oracle Next Education (ONE) ofertada pela Oracle Brasil em parceria com a Alura.
 
@@ -40,6 +40,8 @@ Você pode acessar o projeto online clicando no link abaixo: 👉🏻 [SÓ CLICA
 - **Toastify:** Biblioteca para exibição de alertas personalizados.
 - **SweetAlert2:** Biblioteca para modais e caixas de diálogo.
 - **QRCode.js:** Biblioteca para geração de QR Codes.
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Merriweather&size=50&duration=3000&pause=800&color=4B69FD&center=true&width=830&height=90&lines=Amigo+Secreto+%F0%9F%8E%81;Secret+Santa+%F0%9F%8E%85%F0%9F%8F%BB;Angelito+%F0%9F%8E%81;Amigo+Oculto+%F0%9F%8E%85%F0%9F%8F%BB;Amigo+Invisible+%F0%9F%8E%81)](https://git.io/typing-svg)
 
 ## 🧠 Como Usar
 
@@ -141,7 +143,7 @@ Quero agradecer à [Alura](https://github.com/alura-cursos) e à [Oracle](https:
 
 Fui reconhecida com a seguinte insígnia pelo programa <Hello, ONE!> da Alura + Oracle:
 
-<p align="center"><img src="https://raw.githubusercontent.com/SuianeHenrichs1/Amigo-Secreto/main/assets/ff043987-239b-4661-bdb1-7f4ca6092c48.webp" alt="Insígnia de Aluno Oracle Next Education" width="200"></p>
+<p align="center"><img src="https://github.com/user-attachments/assets/a05b53f7-544c-444a-9040-9dccd229fbd9" alt="Insígnia de Aluno Oracle Next Education" width="200"></p>
 
 ## Diagramas de Fluxo
 
