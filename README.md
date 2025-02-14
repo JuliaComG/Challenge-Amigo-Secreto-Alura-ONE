@@ -59,19 +59,27 @@ O Amigo Secreto é uma aplicação web que permite aos usuários adicionar nomes
 - A aplicação possui efeitos sonoros que podem ser habilitados ou desabilitados clicando no ícone de som no canto superior esquerdo da tela.
 
 
-## Estrutura do Projeto
+## 📂 Estrutura do Projeto
 ```
 /
-├── assets/
-│   ├── diagrama1.png
-│   ├── diagrama2.png
-├── docs/
-│   ├── diagrama1.png
-│   ├── diagrama2.png
-├── README.md
-├── index.html
-├── style.css
-├── app.js
+├── 📂 assets/ 
+│   ├── 📂 qrcodejs/
+│   │   ├──  Arquivos Pertinentes a biblioteca QRCode.js
+│   ├── 📂 sweetalert2/ 
+│   │   ├──  Arquivos Pertinentes a biblioteca SweetAlert2.js
+│   ├── 📂 toastify/ 
+│   │   ├──  Arquivos Pertinentes a biblioteca Toastify.js
+│   ├── 🖼️ Imagens
+├── 📂 sounds/ 
+│   ├── 🔊 Sons para erro/sucesso/alert
+│   ├── 🔊 Sons de teclado
+│   ├── 🔊 Sons de UI
+├── 📄 README.md
+├── 📄 app.js
+├── 🖼️ icon_page.png
+├── 📄 index.html
+├── 🎨 style.css
+
 ```
 
 ## Contribuição
