@@ -418,21 +418,6 @@ function wayToShowTheResult(){
     });
 }
 
-function showLoadingAlert() {
-    Swal.fire({
-        title: 'Gerando QR Codes...',
-        html: 'Por favor, aguarde enquanto os QR Codes estão sendo gerados.',
-        allowOutsideClick: false,
-        didOpen: () => {
-            Swal.showLoading();
-        }
-    });
-}
-
-function closeLoadingAlert() {
-    Swal.close();
-}
-
 function showDrawNameByName() {
     if (currentIndexForShowDrawNameByName >= drawnPairs.length) {
         areYouReadyToDrawAgain = true;
@@ -504,11 +489,23 @@ function showDrawPairs() {
 function showDrawQR() {
     showLoadingAlert();
     setTimeout(() => {
-        generateCards(drawnPairs);
+        generateCards();
         areYouReadyToDrawAgain = true;
         updateUIButtons();
         closeLoadingAlert();
     }, 100);
+    
+}
+
+function showLoadingAlert() {
+    Swal.fire({
+        title: 'Gerando QR Codes...',
+        html: 'Por favor, aguarde enquanto os QR Codes estão sendo gerados.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
 }
 
 function generateCards() {
@@ -549,6 +546,11 @@ function generateCards() {
     });
 }
 
+function closeLoadingAlert() {
+    Swal.close();
+    showQRCodeExplanation();
+}
+
 function encryptData(data) {
     return btoa(encodeURIComponent(data));
 }
@@ -561,6 +563,14 @@ function generateUniqueURL(myself, encryptedFriend) {
     let baseURL = baseUrlForQRCode;
     let encodedMyself = encodeURIComponent(myself);
     return `${baseURL}?myself=${encodedMyself}&friend=${encryptedFriend}`;
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showUIAlertMessage("Link copiado!", "success");
+    }).catch(() => {
+        showUIAlertMessage("Erro ao copiar o link para a área de transferência.", "error");
+    });
 }
 
 function showAlertIfParametersExist() {
@@ -602,10 +612,24 @@ function doItAgain(){
     showUIAlertMessage("Agora você pode fazer um novo sorteio.", "success");
 }
 
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        showUIAlertMessage("Link copiado!", "success");
-    }).catch(() => {
-        showUIAlertMessage("Erro ao copiar o link para a área de transferência.", "error");
+function showQRCodeExplanation() {
+    Swal.fire({
+        title: 'Como funciona o QR Code?',
+        html: `
+            <p>O QR Code é uma forma segura e divertida de revelar o seu amigo secreto! Aqui está como funciona:</p>
+            <ul>
+                <li><strong>Leia o QR Code:</strong> Use a câmera do seu celular para escanear o QR Code. Ele irá redirecionar você para uma página onde o nome do seu amigo secreto será revelado.</li>
+                <li><strong>Clique no Card:</strong> Se preferir, você pode clicar no card para copiar o link do QR Code. Depois, basta colar o link no navegador para ver o resultado.</li>
+            </ul>
+            <p>É simples, rápido e mantém a surpresa até o final!</p>
+        `,
+        icon: 'info',
+        confirmButtonText: 'Entendi!',
+        customClass: {
+            popup: 'custom-swal-popup',
+            title: 'custom-swal-title',
+            htmlContainer: 'custom-swal-html',
+            confirmButton: 'custom-swal-confirm-button'
+        }
     });
 }

@@ -105,7 +105,7 @@ body {
     text-align: center;
     width: 100%;
     text-align: center;
-    margin-bottom: 20px; /* Espaçamento entre o título e os cards */
+    margin-bottom: 20px;
 }
 
 /* Contêineres de entrada e botão */
@@ -230,7 +230,7 @@ ul {
     border: 1px solid var(--color-border);
   }
 
-  .name-list li {
+.name-list li {
     align-items: center;
     justify-content: center;
     width: auto;
@@ -389,8 +389,8 @@ footer a {
 }
 
 .card.copied {
-    background-color: var(--color-alert-sucess); /* Verde */
-    color: white; /* Texto branco para melhor contraste */
+    background-color: var(--color-alert-sucess);
+    color: white;
     
 }
 
@@ -416,8 +416,6 @@ footer a {
     justify-content: center;
     align-items: center;
 }
-
-
 
 /*Para smartphone*/
 @media only screen and (max-width: 1400px) {
@@ -556,95 +554,84 @@ footer a {
     color: var(--color-white);
 }
 
-
-/* Fundo do modal */
+/* Modal */
 .swal2-popup {
-    background-color: var(--color-secondary); /* Cor de fundo do modal */
-    color: var(--color-text); /* Cor do texto principal */
-    border-radius: 25px; /* Bordas arredondadas */
-    border: 2px solid var(--color-border); /* Borda */
-    box-shadow: 0 4px 8px var(--color-box-shadow); /* Sombra */
+    background-color: var(--color-secondary); 
+    color: var(--color-text);
+    border-radius: 25px;
+    border: 2px solid var(--color-border);
+    box-shadow: 0 4px 8px var(--color-box-shadow);
 }
 
-/* Título */
 .swal2-title {
-    color: var(--color-primary); /* Cor do título */
-    font-family: "Merriweather", serif; /* Fonte do título */
-    font-size: 24px; /* Tamanho do título */
-    font-weight: 900; /* Peso da fonte */
-    font-style: italic; /* Estilo itálico */
+    color: var(--color-primary);
+    font-family: "Merriweather", serif;
+    font-size: 24px;
+    font-weight: 900;
+    font-style: italic;
 }
 
-/* Texto do conteúdo */
 .swal2-content {
-    color: var(--color-text); /* Cor do texto */
-    font-family: "Inter", sans-serif; /* Fonte do conteúdo */
-    font-size: 16px; /* Tamanho do texto */
+    color: var(--color-text);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
 }
 
-/* Botão de confirmação */
 .swal2-confirm {
-    background-color: var(--color-button-confirm); /* Cor de fundo */
-    color: var(--color-white); /* Cor do texto */
-    border-radius: 25px; /* Bordas arredondadas */
-    border: 2px solid var(--color-border); /* Borda */
-    font-family: "Inter", sans-serif; /* Fonte */
-    font-size: 16px; /* Tamanho do texto */
-    padding: 10px 20px; /* Espaçamento interno */
-    box-shadow: 0 4px 8px var(--color-box-shadow); /* Sombra */
+    background-color: var(--color-button-confirm);
+    color: var(--color-white);
+    border-radius: 25px;
+    border: 2px solid var(--color-border);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px var(--color-box-shadow);
 }
-
 
 .swal2-confirm:hover {
-    background-color: var(--color-button-confirm-hover); /* Cor de fundo ao passar o mouse */
+    background-color: var(--color-button-confirm-hover);
 }
 
-/* Botão de cancelar */
 .swal2-cancel {
-    background-color: var(--color-remove-list); /* Cor de fundo */
-    color: var(--color-white); /* Cor do texto */
-    border-radius: 25px; /* Bordas arredondadas */
-    border: 2px solid var(--color-border); /* Borda */
-    font-family: "Inter", sans-serif; /* Fonte */
-    font-size: 16px; /* Tamanho do texto */
-    padding: 10px 20px; /* Espaçamento interno */
-    box-shadow: 0 4px 8px var(--color-box-shadow); /* Sombra */
+    background-color: var(--color-remove-list);
+    color: var(--color-white);
+    border-radius: 25px;
+    border: 2px solid var(--color-border);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px var(--color-box-shadow);
 }
 
 .swal2-cancel:hover {
-    background-color: var(--color-remove-list-hover); /* Cor de fundo ao passar o mouse */
+    background-color: var(--color-remove-list-hover);
 }
 
-/* Ícone de sucesso */
 .swal2-success {
-    color: var(--color-alert-sucess); /* Cor do ícone de sucesso */
+    color: var(--color-alert-sucess);
 }
 
-/* Ícone de erro */
 .swal2-error {
-    color: var(--color-alert-error); /* Cor do ícone de erro */
+    color: var(--color-alert-error);
 }
 
-/* Ícone de aviso */
 .swal2-warning {
-    color: var(--color-alert-warning); /* Cor do ícone de aviso */
+    color: var(--color-alert-warning);
 }
 
-/* Ícone de informação */
 .swal2-info {
-    color: var(--color-alert-info); /* Cor do ícone de informação */
+    color: var(--color-alert-info);
 }
 
-/* Campo de entrada */
 .swal2-input {
-    border: 2px solid var(--color-border); /* Borda */
-    border-radius: 25px; /* Bordas arredondadas */
-    font-family: "Merriweather", serif; /* Fonte */
-    font-size: 16px; /* Tamanho do texto */
-    padding: 10px; /* Espaçamento interno */
-    box-shadow: 0 4px 8px var(--color-box-shadow); /* Sombra */
+    border: 2px solid var(--color-border);
+    border-radius: 25px;
+    font-family: "Merriweather", serif;
+    font-size: 16px;
+    padding: 10px;
+    box-shadow: 0 4px 8px var(--color-box-shadow);
 }
 
 .swal2-input:focus {
-    border-color: var(--color-primary); /* Cor da borda ao focar */
+    border-color: var(--color-primary);
 }
