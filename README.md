@@ -75,9 +75,9 @@ https://github.com/JuliaComG/Challenge-Amigo-Secreto-Alura-ONE/archive/refs/head
 
 4. Visualizar Resultados:
 - Após o sorteio, você poderá escolher entre três modos de visualização:
-- Modo Simples: Mostra os nomes sorteados um por um.
-- Modo Pares: Exibe todos os pares de amigos secretos.
-- Modo QR Code: Gera um QR Code para cada participante, que ao ser escaneado, revela o amigo secreto.
+  - Modo Simples: Mostra os nomes sorteados um por um.
+  - Modo Pares: Exibe todos os pares de amigos secretos.
+  - Modo QR Code: Gera um QR Code para cada participante, que ao ser escaneado, revela o amigo secreto.
 
 5. Gerenciar a Lista:
 - Para remover um nome individualmente, clique no botão "X" ao lado do nome na lista.
@@ -129,13 +129,13 @@ Este projeto está sob a licença MIT. Isso significa que você pode utilizá-lo
 Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em contato:
 
 - Giulia Armanelli
-- GitHub: JuliaComG
+- GitHub: [JuliaComG](https://github.com/JuliaComG)
 - Linkdin: https://www.linkedin.com/in/giulia-armanelli/
 - Email: garmanelli.dev@gmail.com
 
 ## 💖 Créditos e Agradecimentos 
 
-Quero agradecer à [Alura](https://github.com/alura-cursos) e à [Oracle](https://github.com/oracle) pelo conhecimento compartilhado e pelas oportunidades proporcionadas por meio do programa **<Hello, ONE!>**.
+Quero agradecer à [Alura](https://github.com/alura-cursos) e à [Oracle](https://github.com/oracle) pelo conhecimento compartilhado e pelas oportunidades proporcionadas por meio do programa [**<Hello, ONE!>**.](https://www.oracle.com/br/education/oracle-next-education/)
 
 ## 📃 Certificação
 
