@@ -7,7 +7,7 @@ Bem-vindo ao Amigo Secreto, um projeto desenvolvido para facilitar o sorteio de 
   <a href="#-tecnologias-utilizadas">🧠 Como Usar</a>
 </p>
 
-## Visão Geral
+## ✨ Visão Geral
 
 O Amigo Secreto é uma aplicação web que permite aos usuários adicionar nomes de amigos, realizar o sorteio de pares e visualizar os resultados de diferentes maneiras. A aplicação oferece três modos de visualização do resultado: Modo Simples, Modo Pares e Modo QR Code, garantindo que o sorteio seja feito de forma justa e sigilosa.
 
@@ -124,7 +124,7 @@ Contribuições são bem-vindas! Se você deseja contribuir para este projeto, s
 
 Este projeto está sob a licença MIT. Isso significa que você pode utilizá-lo, modificá-lo e distribuí-lo livremente, desde que mantenha os créditos.
 
-## Contato
+## 📧 Contato
 
 Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em contato:
 
@@ -133,16 +133,15 @@ Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em c
 - Linkdin: https://www.linkedin.com/in/giulia-armanelli/
 - Email: garmanelli.dev@gmail.com
 
-## Créditos e Agradecimentos 
+## 💖 Créditos e Agradecimentos 
 
 Quero agradecer à [Alura](https://github.com/alura-cursos) e à [Oracle](https://github.com/oracle) pelo conhecimento compartilhado e pelas oportunidades proporcionadas por meio do programa **<Hello, ONE!>**.
 
-## Certificação
+## 📃 Certificação
 
 Fui reconhecida com a seguinte insígnia pelo programa <Hello, ONE!> da Alura + Oracle:
 
-![Insígnia aluno ONE](Link)
-
+<p align="center"><img src="https://raw.githubusercontent.com/SuianeHenrichs1/Amigo-Secreto/main/assets/ff043987-239b-4661-bdb1-7f4ca6092c48.webp" alt="Insígnia de Aluno Oracle Next Education" width="200"></p>
 
 ## Diagramas de Fluxo
 
