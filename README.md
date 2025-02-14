@@ -20,15 +20,37 @@ Você pode acessar o projeto online clicando no link abaixo: 👉🏻 [SÓ CLICA
 ## ✨ Funcionalidades
 
 - **Adicionar Nomes**: Insira os nomes dos participantes do amigo secreto.
+
+https://github.com/user-attachments/assets/b043ed8a-f128-419d-b487-de1fb537771d
+
 - **Remover Nomes**: Permite remover nomes individuais ou limpar toda a lista.
-- **Sorteio de Nomes**: Quando há pelo menos 3 nomes na lista, o botão de sorteio é habilitado, permitindo que o usuário realize o sorteio, garantindo que ninguém tire a si mesmo.
+
+https://github.com/user-attachments/assets/a62f45c8-b9fd-4697-be4c-30abe352feda
+
+https://github.com/user-attachments/assets/83c161ff-dc37-4351-94af-c465bfd4b834
+ 
 - **Efeitos Sonoros**: Adiciona efeitos sonoros interativos durante a digitação e ações na aplicação.
+  
+https://github.com/user-attachments/assets/ded88adc-15c6-477d-a7e2-8dc4c6a088be
+
 - **Alertas Visuais**: Mensagens de alerta são exibidas para informar o usuário sobre erros, sucessos ou avisos.
+- **Sorteio de Nomes**: Quando há pelo menos 3 nomes na lista, o botão de sorteio é habilitado, permitindo que o usuário realize o sorteio, garantindo que ninguém tire a si mesmo.
 - **Visualização dos Resultados:**
   - Modo Simples: Mostra os nomes sorteados um por um.
+
+https://github.com/user-attachments/assets/c151c2e9-c534-49d2-9f46-c2765fc97049
+
   - Modo Pares: Exibe todos os pares de amigos secretos de uma vez.
+
+https://github.com/user-attachments/assets/1d9033f0-b68c-4b49-a72c-f57ce14716ed
+    
   - Modo QR Code: Gera um QR Code para cada participante, que ao ser escaneado, revela o amigo secreto.
+
+https://github.com/user-attachments/assets/299425e9-1b3b-407a-93a0-4a06c3f28623
+    
 - **Responsividade:** A aplicação é totalmente responsiva, funcionando bem em dispositivos móveis e desktops.
+
+https://github.com/user-attachments/assets/0f2115db-b73c-4073-9746-d0a33baf0f4e
 
 > Para entender mais sobre o funcionamento do site e como o código foi construido veja o [Diagrama de Fluxo](#diagramas-de-fluxo).
 
@@ -70,6 +92,7 @@ https://github.com/JuliaComG/Challenge-Amigo-Secreto-Alura-ONE/archive/refs/head
 2. Adicionar Nomes:
 - No campo de texto, digite o nome de um amigo e clique em "Adicionar" ou pressione "Enter".
 - Os nomes serão exibidos na lista abaixo do campo de entrada.
+  
 
 3. Realizar o Sorteio:
 - Após adicionar pelo menos 3 nomes, o botão "Sortear amigo" será habilitado.
@@ -77,9 +100,17 @@ https://github.com/JuliaComG/Challenge-Amigo-Secreto-Alura-ONE/archive/refs/head
 
 4. Visualizar Resultados:
 - Após o sorteio, você poderá escolher entre três modos de visualização:
+
+
   - Modo Simples: Mostra os nomes sorteados um por um.
+
+
   - Modo Pares: Exibe todos os pares de amigos secretos.
+
+
   - Modo QR Code: Gera um QR Code para cada participante, que ao ser escaneado, revela o amigo secreto.
+
+
 
 5. Gerenciar a Lista:
 - Para remover um nome individualmente, clique no botão "X" ao lado do nome na lista.
