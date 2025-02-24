@@ -4,7 +4,8 @@ Bem-vindo ao Amigo Secreto, um projeto desenvolvido para facilitar o sorteio de 
 
 <p align="center">
   <a href="#-tecnologias-utilizadas">🛠 Tecnologias Utilizadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-tecnologias-utilizadas">🧠 Como Usar</a>
+  <a href="#-tecnologias-utilizadas">🧠 Como Usar</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="https://juliacomg.github.io/Challenge-Amigo-Secreto-Alura-ONE/">🌍 Site</a>
 </p>
 
 ## ✨ Visão Geral
@@ -14,8 +15,6 @@ O Amigo Secreto é uma aplicação web que permite aos usuários adicionar nomes
 ## 🌍 Acesse o Projeto
 
 Você pode acessar o projeto online clicando no link abaixo: 👉🏻 [SÓ CLICAR AQUI](https://juliacomg.github.io/Challenge-Amigo-Secreto-Alura-ONE/) 👈🏻
-
-> EM BREVE VÍDEO COM AS FUNCIONALIDADES
 
 ## ✨ Funcionalidades
 
@@ -140,39 +139,6 @@ https://github.com/JuliaComG/Challenge-Amigo-Secreto-Alura-ONE/archive/refs/head
 ├── 🎨 style.css
 
 ```
-
-## 🖥️ Contribuição
-
-Contribuições são bem-vindas! Se você deseja contribuir para este projeto, siga os passos abaixo:
-
-1. Faça um fork do repositório.
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`).
-3. Commit suas mudanças (`git commit -m 'Adicionando nova feature'`).
-4. Push para a branch (`git push origin feature/nova-feature`).
-5. Abra um Pull Request.
-
-## 🛡️ Licença
-
-Este projeto está sob a licença MIT. Isso significa que você pode utilizá-lo, modificá-lo e distribuí-lo livremente, desde que mantenha os créditos.
-
-## 📧 Contato
-
-Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em contato:
-
-- Giulia Armanelli
-- GitHub: [JuliaComG](https://github.com/JuliaComG)
-- Linkdin: https://www.linkedin.com/in/giulia-armanelli/
-- Email: garmanelli.dev@gmail.com
-
-## 💖 Créditos e Agradecimentos 
-
-Quero agradecer à [Alura](https://github.com/alura-cursos) e à [Oracle](https://github.com/oracle) pelo conhecimento compartilhado e pelas oportunidades proporcionadas por meio do programa [**<Hello, ONE!>**.](https://www.oracle.com/br/education/oracle-next-education/)
-
-## 📃 Certificação
-
-Fui reconhecida com a seguinte insígnia pelo programa <Hello, ONE!> da Alura + Oracle:
-
-<p align="center"><img src="https://github.com/user-attachments/assets/a05b53f7-544c-444a-9040-9dccd229fbd9" alt="Insígnia de Aluno Oracle Next Education" width="200"></p>
 
 ## Diagramas de Fluxo
 
@@ -310,3 +276,35 @@ flowchart TD
     AL --> AW
     AN --> AW
 ```
+
+## 🖥️ Contribuição
+
+Contribuições são bem-vindas! Se você deseja contribuir para este projeto, siga os passos abaixo:
+
+1. Faça um fork do repositório.
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`).
+3. Commit suas mudanças (`git commit -m 'Adicionando nova feature'`).
+4. Push para a branch (`git push origin feature/nova-feature`).
+5. Abra um Pull Request.
+
+## 🛡️ Licença
+
+Este projeto está sob a licença MIT. Isso significa que você pode utilizá-lo, modificá-lo e distribuí-lo livremente, desde que mantenha os créditos.
+
+## 📧 Contato
+
+Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em contato:
+
+- GitHub: [JuliaComG](https://github.com/JuliaComG)
+- Linkdin: https://www.linkedin.com/in/giulia-armanelli/
+- Email: garmanelli.dev@gmail.com
+
+## 💖 Créditos e Agradecimentos 
+
+Quero agradecer à [Alura](https://github.com/alura-cursos) e à [Oracle](https://github.com/oracle) pelo conhecimento compartilhado e pelas oportunidades proporcionadas por meio do programa [**<Hello, ONE!>**.](https://www.oracle.com/br/education/oracle-next-education/)
+
+## 📃 Certificação
+
+Fui reconhecida com a seguinte insígnia pelo programa <Hello, ONE!> da Alura + Oracle:
+
+<p align="center"><img src="https://github.com/user-attachments/assets/a05b53f7-544c-444a-9040-9dccd229fbd9" alt="Insígnia de Aluno Oracle Next Education" width="200"></p>
